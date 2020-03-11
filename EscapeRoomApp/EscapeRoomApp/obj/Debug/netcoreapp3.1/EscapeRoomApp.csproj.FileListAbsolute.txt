@@ -1,0 +1,13 @@
+C:\Users\micha\source\repos\EscapeRoomApp\EscapeRoomApp\bin\Debug\netcoreapp3.1\EscapeRoomApp.exe
+C:\Users\micha\source\repos\EscapeRoomApp\EscapeRoomApp\bin\Debug\netcoreapp3.1\EscapeRoomApp.deps.json
+C:\Users\micha\source\repos\EscapeRoomApp\EscapeRoomApp\bin\Debug\netcoreapp3.1\EscapeRoomApp.runtimeconfig.json
+C:\Users\micha\source\repos\EscapeRoomApp\EscapeRoomApp\bin\Debug\netcoreapp3.1\EscapeRoomApp.runtimeconfig.dev.json
+C:\Users\micha\source\repos\EscapeRoomApp\EscapeRoomApp\bin\Debug\netcoreapp3.1\EscapeRoomApp.dll
+C:\Users\micha\source\repos\EscapeRoomApp\EscapeRoomApp\bin\Debug\netcoreapp3.1\EscapeRoomApp.pdb
+C:\Users\micha\source\repos\EscapeRoomApp\EscapeRoomApp\obj\Debug\netcoreapp3.1\EscapeRoomApp.csprojAssemblyReference.cache
+C:\Users\micha\source\repos\EscapeRoomApp\EscapeRoomApp\obj\Debug\netcoreapp3.1\EscapeRoomApp.AssemblyInfoInputs.cache
+C:\Users\micha\source\repos\EscapeRoomApp\EscapeRoomApp\obj\Debug\netcoreapp3.1\EscapeRoomApp.AssemblyInfo.cs
+C:\Users\micha\source\repos\EscapeRoomApp\EscapeRoomApp\obj\Debug\netcoreapp3.1\EscapeRoomApp.dll
+C:\Users\micha\source\repos\EscapeRoomApp\EscapeRoomApp\obj\Debug\netcoreapp3.1\EscapeRoomApp.pdb
+C:\Users\micha\source\repos\EscapeRoomApp\EscapeRoomApp\bin\Debug\netcoreapp3.1\Colorful.Console.dll
+C:\Users\micha\source\repos\EscapeRoomApp\EscapeRoomApp\obj\Debug\netcoreapp3.1\EscapeRoomApp.csproj.CopyComplete
