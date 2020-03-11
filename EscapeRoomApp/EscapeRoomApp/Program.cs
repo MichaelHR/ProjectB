@@ -54,7 +54,7 @@ namespace EscapeRoomApp
                 string PasswordInput = Console.ReadLine();
                 if (PasswordInput == AdminPassword)
                 {
-                    Console.WriteLine("Welcome Addmin");
+                    Console.WriteLine("Welcome Admin");
                     Attempts = 3;
                     AdminMenu();
                 }
