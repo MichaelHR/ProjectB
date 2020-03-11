@@ -19,14 +19,14 @@ namespace EscapeRoomApp
             Console.WriteLine("What type of user are you?");
             Console.WriteLine("(1) Client");
             Console.WriteLine("(2) Admin");
-            int UserType = int.Parse(Console.ReadLine());
+            string UserType = (Console.ReadLine());
 
-            if (UserType == 1)
+            if (UserType == "1")
             {
                 Console.WriteLine("Welcome Client.\n");
                 ClientMenu();
             }
-            else if (UserType == 2)
+            else if (UserType == "2")
             {
                 PasswordCheck();
             }
@@ -40,7 +40,9 @@ namespace EscapeRoomApp
         static void ClientMenu()
         // Gets called when the user chooses the 'client' option.
         {
-            
+            Console.WriteLine("What would you like to do?\n(1) Reserve an Escape Room\n(2) Cancel a reservation\n(3) Read Escape Room description");
+            string ClientAction = (Console.ReadLine());
+            Console.WriteLine(ClientAction);
         }
 
         static void PasswordCheck()
@@ -54,7 +56,7 @@ namespace EscapeRoomApp
                 string PasswordInput = Console.ReadLine();
                 if (PasswordInput == AdminPassword)
                 {
-                    Console.WriteLine("Welcome Admin");
+                    Console.WriteLine("\nWelcome Admin");
                     Attempts = 3;
                     AdminMenu();
                 }
@@ -73,7 +75,7 @@ namespace EscapeRoomApp
         static void AdminMenu()
         //Gets called when the user inputs the correct password.
         {
-            Console.WriteLine("\nWhat do you wish to do?\n(1) Edit Escape Room information.\n(2) Check the reservations.");
+            Console.WriteLine("\nWhat do you wish to do?\n(1) Edit Escape Room information\n(2) Check the reservations");
             Console.ReadLine();
         }
 
