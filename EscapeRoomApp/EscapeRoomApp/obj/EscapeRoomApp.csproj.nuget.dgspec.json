@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\micha\\Desktop\\EscapeRoomApp\\EscapeRoomApp\\EscapeRoomApp.csproj": {}
+    "C:\\Users\\micha\\Desktop\\KrakenDocuments\\ProjectB\\EscapeRoomApp\\EscapeRoomApp\\EscapeRoomApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\micha\\Desktop\\EscapeRoomApp\\EscapeRoomApp\\EscapeRoomApp.csproj": {
+    "C:\\Users\\micha\\Desktop\\KrakenDocuments\\ProjectB\\EscapeRoomApp\\EscapeRoomApp\\EscapeRoomApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\micha\\Desktop\\EscapeRoomApp\\EscapeRoomApp\\EscapeRoomApp.csproj",
+        "projectUniqueName": "C:\\Users\\micha\\Desktop\\KrakenDocuments\\ProjectB\\EscapeRoomApp\\EscapeRoomApp\\EscapeRoomApp.csproj",
         "projectName": "EscapeRoomApp",
-        "projectPath": "C:\\Users\\micha\\Desktop\\EscapeRoomApp\\EscapeRoomApp\\EscapeRoomApp.csproj",
+        "projectPath": "C:\\Users\\micha\\Desktop\\KrakenDocuments\\ProjectB\\EscapeRoomApp\\EscapeRoomApp\\EscapeRoomApp.csproj",
         "packagesPath": "C:\\Users\\micha\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\micha\\Desktop\\EscapeRoomApp\\EscapeRoomApp\\obj\\",
+        "outputPath": "C:\\Users\\micha\\Desktop\\KrakenDocuments\\ProjectB\\EscapeRoomApp\\EscapeRoomApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\micha\\AppData\\Roaming\\NuGet\\NuGet.Config",
