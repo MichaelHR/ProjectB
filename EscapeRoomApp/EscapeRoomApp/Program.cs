@@ -75,7 +75,10 @@ namespace EscapeRoomApp
             string EscapeRoomNumber = System.Console.ReadLine();
             if (EscapeRoomNumber == "1")
             {
-
+                System.Console.WriteLine("\nName: \nAge: Children\n");
+                Colorful.Console.WriteLine("Press any key to continue.", Color.White);
+                System.Console.ReadLine();
+                EscapeRoomList();
             }
         }
 
