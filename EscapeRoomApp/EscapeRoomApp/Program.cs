@@ -7,20 +7,22 @@ namespace EscapeRoomApp
     class Program
     {
 
+
         static void Main(string[] args)
         //Beginning function.
         {
-            Colorful.Console.WriteLine("Welcome to the escape room application.", Color.White);
+            Colorful.Console.WriteLine("Welcome to the escape room application.\n", Color.White);
             Start();
         }
+
 
         static void Start()
         // Gets called at the start of the program.
         {
-            System.Console.WriteLine("What type of user are you?");
+            Colorful.Console.WriteLine("What type of user are you?", Color.White);
             System.Console.WriteLine("(1) Client");
             System.Console.WriteLine("(2) Admin");
-            string UserType = (System.Console.ReadLine());
+            string UserType = System.Console.ReadLine();
 
             if (UserType == "1")
             {
@@ -38,14 +40,17 @@ namespace EscapeRoomApp
             }
         }
 
+
         static void ClientMenu()
         // Gets called when the user chooses the 'client' option.
         {
-            System.Console.WriteLine("What would you like to do?\n(1) Reserve an Escape Room\n(2) Cancel a reservation\n(3) Read Escape Room description");
-            string ClientAction = (System.Console.ReadLine());
+            Colorful.Console.WriteLine("What would you like to do?", Color.White);
+            System.Console.WriteLine("(1) Discover our Escape Rooms\n(2) Reserve an Escape Room\n(3) Cancel a reservation");
+            string ClientAction = System.Console.ReadLine();
             if (ClientAction == "1")
             {
-                System.Console.WriteLine("Reservation System");
+                Colorful.Console.WriteLine("\nBelow you will find a list of our Escape Rooms.\n", Color.White);
+                EscapeRoomList();
             }
             else if (ClientAction == "2")
             {
@@ -60,6 +65,20 @@ namespace EscapeRoomApp
                 Colorful.Console.WriteLine("Invalid input!", Color.Red);
             }
         }
+
+
+        static void EscapeRoomList()
+        //Gets called when the user chooses the option to check out the escape rooms.
+        {
+            Colorful.Console.WriteLine("Which Escape Room would you like to check out?", Color.White);
+            System.Console.WriteLine("(1) \n(2) \n(3) \n(4) \n(5) ");
+            string EscapeRoomNumber = System.Console.ReadLine();
+            if (EscapeRoomNumber == "1")
+            {
+
+            }
+        }
+
 
         static void PasswordCheck()
         // Gets called when the user chooses the 'admin' option.
@@ -88,6 +107,7 @@ namespace EscapeRoomApp
                 }
             }
         }
+
 
         static void AdminMenu()
         //Gets called when the user inputs the correct password.
