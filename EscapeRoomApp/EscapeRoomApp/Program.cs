@@ -71,13 +71,25 @@ namespace EscapeRoomApp
         //Gets called when the user chooses the option to check out the escape rooms.
         {
             Colorful.Console.WriteLine("Which Escape Room would you like to check out?", Color.White);
-            System.Console.WriteLine("(1) \n(2) \n(3) \n(4) \n(5) ");
+            System.Console.WriteLine("(1) Clumsy Clowns\n(2) Hidden Evidence\n(3) \n(4) \n(5) ");
             string EscapeRoomNumber = System.Console.ReadLine();
             if (EscapeRoomNumber == "1")
             {
-                System.Console.WriteLine("\nName: \nAge: Children\n");
-                Colorful.Console.WriteLine("Press any key to continue.", Color.White);
-                System.Console.ReadLine();
+                System.Console.WriteLine("\nName: Clumsy Clowns\nDescription: The participants have accidentally been locked in a room by clumsy clowns.\n             The participants must escape within one hour in order to make it on time to the circus show.\nAge: Children\nTime: 60 minutes\nLocation: EscapeRoomBV\n");
+                Colorful.Console.WriteLine("Press any key to continue.\n", Color.White);
+                System.Console.ReadKey();
+                EscapeRoomList();
+            }
+            else if (EscapeRoomNumber == "2")
+            {
+                System.Console.WriteLine("\nName: Hidden Evidence\nDescription: The participants have innocently been imprisioned by a corrupt police officer.\n             They must escape within an hour with the evidence the police officer is trying to hide.\nAge: All ages\nTime: 60 minutes\nLocation: EscapeRoomBV\n");
+                Colorful.Console.WriteLine("Press any key to continue.\n", Color.White);
+                System.Console.ReadKey();
+                EscapeRoomList();
+            }
+            else
+            {
+                Colorful.Console.WriteLine("\nInvalid input!\n", Color.Red);
                 EscapeRoomList();
             }
         }
