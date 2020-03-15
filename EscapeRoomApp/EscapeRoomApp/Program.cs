@@ -54,7 +54,7 @@ namespace EscapeRoomApp
             }
             else if (ClientAction == "2")
             {
-                System.Console.WriteLine("Cancel System");
+                ReservationMenu();
             }
             else if (ClientAction == "3")
             {
@@ -71,7 +71,7 @@ namespace EscapeRoomApp
         //Gets called when the user chooses the option to check out the escape rooms.
         {
             Colorful.Console.WriteLine("Which Escape Room would you like to check out?", Color.White);
-            System.Console.WriteLine("(1) Clumsy Clowns\n(2) Hidden Evidence\n(3) \n(4) \n(5) ");
+            System.Console.WriteLine("(1) Clumsy Clowns\n(2) Hidden Evidence\n(3) \n(4) \n(5) \n(6) Back");
             string EscapeRoomNumber = System.Console.ReadLine();
             if (EscapeRoomNumber == "1")
             {
@@ -87,11 +87,31 @@ namespace EscapeRoomApp
                 System.Console.ReadKey();
                 EscapeRoomList();
             }
+            else if (EscapeRoomNumber == "6")
+            {
+                System.Console.WriteLine("");
+                ClientMenu();
+            }
             else
             {
                 Colorful.Console.WriteLine("\nInvalid input!\n", Color.Red);
                 EscapeRoomList();
             }
+        }
+
+
+        static void ReservationMenu()
+        {
+            Colorful.Console.WriteLine("\nPlease enter the name you wish to reserve with.", Color.White);
+            Colorful.Console.WriteLine("Note that you will need this name in order to cancel, make sure to save it.", Color.Yellow);
+            string ReservationName = System.Console.ReadLine();
+            Colorful.Console.WriteLine("\nPlease enter your age", Color.White);
+            string ReservationAge = System.Console.ReadLine();
+            Reservation reservation1 = new Reservation(ReservationName, ReservationAge);
+            System.Console.WriteLine("");
+            System.Console.WriteLine(reservation1.name);
+            System.Console.WriteLine(reservation1.age);
+            System.Console.ReadKey();
         }
 
 
@@ -131,5 +151,19 @@ namespace EscapeRoomApp
             string AdminChoice = System.Console.ReadLine();
         }
 
+    }
+
+
+    public class Reservation
+    {
+
+        public string name;
+        public string age;
+
+        public Reservation(string aName, string aAge)
+        {
+            name = aName;
+            age = aAge;
+        }
     }
 }
