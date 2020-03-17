@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Colorful;
 using System.Drawing;
 
@@ -102,7 +103,7 @@ namespace EscapeRoomApp
 
         static void ReservationMenu()
         {
-            Colorful.Console.WriteLine("\nPlease enter the name you wish to reserve with.", Color.White);
+            Colorful.Console.WriteLine("\nPlease enter the name you wish to reserve with (first and last name).", Color.White);
             Colorful.Console.WriteLine("Note that you will need this name in order to cancel, make sure to save it.", Color.Yellow);
             string ReservationName = System.Console.ReadLine();
             Colorful.Console.WriteLine("\nPlease enter your age", Color.White);
@@ -156,12 +157,12 @@ namespace EscapeRoomApp
 
     public class Reservation
     {
-
         public string name;
         public string age;
 
         public Reservation(string aName, string aAge)
         {
+            List<Reservation>
             name = aName;
             age = aAge;
         }
