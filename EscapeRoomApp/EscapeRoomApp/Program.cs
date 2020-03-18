@@ -162,7 +162,7 @@ namespace EscapeRoomApp
 
         public Reservation(string aName, string aAge)
         {
-            List<Reservation>
+            //List<Reservation>
             name = aName;
             age = aAge;
         }
