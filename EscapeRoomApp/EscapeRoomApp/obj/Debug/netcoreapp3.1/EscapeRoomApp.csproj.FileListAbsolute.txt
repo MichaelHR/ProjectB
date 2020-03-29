@@ -24,3 +24,16 @@ C:\Users\micha\Desktop\KrakenDocuments\ProjectB\EscapeRoomApp\EscapeRoomApp\obj\
 C:\Users\micha\Desktop\KrakenDocuments\ProjectB\EscapeRoomApp\EscapeRoomApp\obj\Debug\netcoreapp3.1\EscapeRoomApp.csproj.CopyComplete
 C:\Users\micha\Desktop\KrakenDocuments\ProjectB\EscapeRoomApp\EscapeRoomApp\obj\Debug\netcoreapp3.1\EscapeRoomApp.dll
 C:\Users\micha\Desktop\KrakenDocuments\ProjectB\EscapeRoomApp\EscapeRoomApp\obj\Debug\netcoreapp3.1\EscapeRoomApp.pdb
+C:\Users\Timo\Desktop\Gitkraken\Project B\ProjectB\EscapeRoomApp\EscapeRoomApp\bin\Debug\netcoreapp3.1\EscapeRoomApp.exe
+C:\Users\Timo\Desktop\Gitkraken\Project B\ProjectB\EscapeRoomApp\EscapeRoomApp\bin\Debug\netcoreapp3.1\EscapeRoomApp.deps.json
+C:\Users\Timo\Desktop\Gitkraken\Project B\ProjectB\EscapeRoomApp\EscapeRoomApp\bin\Debug\netcoreapp3.1\EscapeRoomApp.runtimeconfig.json
+C:\Users\Timo\Desktop\Gitkraken\Project B\ProjectB\EscapeRoomApp\EscapeRoomApp\bin\Debug\netcoreapp3.1\EscapeRoomApp.runtimeconfig.dev.json
+C:\Users\Timo\Desktop\Gitkraken\Project B\ProjectB\EscapeRoomApp\EscapeRoomApp\bin\Debug\netcoreapp3.1\EscapeRoomApp.dll
+C:\Users\Timo\Desktop\Gitkraken\Project B\ProjectB\EscapeRoomApp\EscapeRoomApp\bin\Debug\netcoreapp3.1\EscapeRoomApp.pdb
+C:\Users\Timo\Desktop\Gitkraken\Project B\ProjectB\EscapeRoomApp\EscapeRoomApp\bin\Debug\netcoreapp3.1\Colorful.Console.dll
+C:\Users\Timo\Desktop\Gitkraken\Project B\ProjectB\EscapeRoomApp\EscapeRoomApp\obj\Debug\netcoreapp3.1\EscapeRoomApp.csprojAssemblyReference.cache
+C:\Users\Timo\Desktop\Gitkraken\Project B\ProjectB\EscapeRoomApp\EscapeRoomApp\obj\Debug\netcoreapp3.1\EscapeRoomApp.AssemblyInfoInputs.cache
+C:\Users\Timo\Desktop\Gitkraken\Project B\ProjectB\EscapeRoomApp\EscapeRoomApp\obj\Debug\netcoreapp3.1\EscapeRoomApp.AssemblyInfo.cs
+C:\Users\Timo\Desktop\Gitkraken\Project B\ProjectB\EscapeRoomApp\EscapeRoomApp\obj\Debug\netcoreapp3.1\EscapeRoomApp.csproj.CopyComplete
+C:\Users\Timo\Desktop\Gitkraken\Project B\ProjectB\EscapeRoomApp\EscapeRoomApp\obj\Debug\netcoreapp3.1\EscapeRoomApp.dll
+C:\Users\Timo\Desktop\Gitkraken\Project B\ProjectB\EscapeRoomApp\EscapeRoomApp\obj\Debug\netcoreapp3.1\EscapeRoomApp.pdb

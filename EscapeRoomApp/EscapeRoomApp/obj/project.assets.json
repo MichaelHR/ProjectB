@@ -2446,19 +2446,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\micha\\.nuget\\packages\\": {}
+    "C:\\Users\\Timo\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\micha\\Desktop\\KrakenDocuments\\ProjectB\\EscapeRoomApp\\EscapeRoomApp\\EscapeRoomApp.csproj",
+      "projectUniqueName": "C:\\Users\\Timo\\Desktop\\Gitkraken\\Project B\\ProjectB\\EscapeRoomApp\\EscapeRoomApp\\EscapeRoomApp.csproj",
       "projectName": "EscapeRoomApp",
-      "projectPath": "C:\\Users\\micha\\Desktop\\KrakenDocuments\\ProjectB\\EscapeRoomApp\\EscapeRoomApp\\EscapeRoomApp.csproj",
-      "packagesPath": "C:\\Users\\micha\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\micha\\Desktop\\KrakenDocuments\\ProjectB\\EscapeRoomApp\\EscapeRoomApp\\obj\\",
+      "projectPath": "C:\\Users\\Timo\\Desktop\\Gitkraken\\Project B\\ProjectB\\EscapeRoomApp\\EscapeRoomApp\\EscapeRoomApp.csproj",
+      "packagesPath": "C:\\Users\\Timo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Timo\\Desktop\\Gitkraken\\Project B\\ProjectB\\EscapeRoomApp\\EscapeRoomApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\micha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Timo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
