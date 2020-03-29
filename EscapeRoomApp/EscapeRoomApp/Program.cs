@@ -127,12 +127,9 @@ namespace EscapeRoomApp
             Colorful.Console.WriteLine("\nPlease enter the name you wish to reserve with (first and last name).", Color.White);
             Colorful.Console.WriteLine("Note that you will need this name in order to cancel, make sure to save it.", Color.Yellow);
             string ReservationName = System.Console.ReadLine();
-            Colorful.Console.WriteLine("\nPlease enter your age", Color.White);
-            string ReservationAge = System.Console.ReadLine();
-            Reservation reservation1 = new Reservation(ReservationName, ReservationAge);
+            Reservation reservation1 = new Reservation(ReservationName);
             System.Console.WriteLine("");
             System.Console.WriteLine(reservation1.name);
-            System.Console.WriteLine(reservation1.age);
             System.Console.ReadKey();
         }
 
@@ -179,13 +176,11 @@ namespace EscapeRoomApp
     public class Reservation
     {
         public string name;
-        public string age;
 
-        public Reservation(string aName, string aAge)
+        public Reservation(string aName)
         {
             //List<Reservation>
             name = aName;
-            age = aAge;
         }
     }
 }
