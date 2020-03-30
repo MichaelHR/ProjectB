@@ -45,7 +45,7 @@ namespace EscapeRoomApp
         // Gets called when the user chooses the 'client' option.
         {
             Colorful.Console.WriteLine("What would you like to do?", Color.White);
-            System.Console.WriteLine("(1) Discover our Escape Rooms\n(2) Reserve an Escape Room\n(3) Cancel a reservation");
+            System.Console.WriteLine("(1) Discover our Escape Rooms\n(2) Reserve an Escape Room\n(3) Cancel a reservation\n(4) Return to Start Menu");
             string ClientAction = System.Console.ReadLine();
             if (ClientAction == "1")
             {
@@ -60,6 +60,11 @@ namespace EscapeRoomApp
             {
                 System.Console.WriteLine("Via JSON");
             }
+            else if (ClientAction == "4")
+            {
+                System.Console.WriteLine("\n");
+                Start();
+            }
             else
             {
                 Colorful.Console.WriteLine("Invalid input!", Color.Red);
@@ -71,7 +76,7 @@ namespace EscapeRoomApp
         //Gets called when the user chooses the option to check out the escape rooms.
         {
             Colorful.Console.WriteLine("Which Escape Room would you like to check out?", Color.White);
-            System.Console.WriteLine("(1) Clumsy Clowns\n(2) Hidden Evidence\n(3) Bank Job \n(4) Up for Adoption \n(5) Killer Clowns \n(6) Back");
+            System.Console.WriteLine("(1) Clumsy Clowns\n(2) Hidden Evidence\n(3) Bank Job \n(4) Up for Adoption \n(5) Killer Clowns \n(6) Return to Menu");
             string EscapeRoomNumber = System.Console.ReadLine();
             if (EscapeRoomNumber == "1")
             {
@@ -157,7 +162,7 @@ namespace EscapeRoomApp
                         break;
                     }
                     Colorful.Console.WriteLine("\nInvalid password.", Color.Red);
-                    Colorful.Console.WriteLine("What would you like to do? \n(1) Enter password again \n(2) Return to main menu", Color.White);
+                    Colorful.Console.WriteLine("What would you like to do? \n(1) Enter password again \n(2) Return to Start Menu", Color.White);
                     string TryAgain = System.Console.ReadLine();
                     if (TryAgain == "1")
                     {
