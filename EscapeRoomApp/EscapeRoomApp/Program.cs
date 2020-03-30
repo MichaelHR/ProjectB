@@ -7,7 +7,7 @@ namespace EscapeRoomApp
 {
     class Program
     {
-
+        public static int Attempts;
 
         static void Main(string[] args)
         //Beginning function.
@@ -15,7 +15,6 @@ namespace EscapeRoomApp
             Colorful.Console.WriteLine("Welcome to the escape room application.\n", Color.White);
             Start();
         }
-
 
         static void Start()
         // Gets called at the start of the program.
@@ -138,7 +137,6 @@ namespace EscapeRoomApp
         // Gets called when the user chooses the 'admin' option.
         {
             string AdminPassword = "Admin";
-            int Attempts = 0;
             while (Attempts < 3)
             {
                 Colorful.Console.WriteLine("\nPlease enter the password:", Color.White);
@@ -151,12 +149,24 @@ namespace EscapeRoomApp
                 }
                 else
                 {
-                    Colorful.Console.WriteLine("\nInvalid password.", Color.Red);
                     Attempts++;
                     if (Attempts == 3)
                     {
                         Colorful.Console.WriteLine("Failed to enter the correct password.", Color.Red);
                         System.Console.ReadLine();
+                        break;
+                    }
+                    Colorful.Console.WriteLine("\nInvalid password.", Color.Red);
+                    Colorful.Console.WriteLine("What would you like to do? \n(1) Enter password again \n(2) Return to main menu", Color.White);
+                    string TryAgain = System.Console.ReadLine();
+                    if (TryAgain == "1")
+                    {
+                        continue;
+                    }
+                    else if (TryAgain == "2")
+                    {
+                        Colorful.Console.WriteLine("\n", Color.White);
+                        Start();
                     }
                 }
             }
