@@ -152,7 +152,7 @@ namespace EscapeRoomApp
                     Attempts++;
                     if (Attempts == 3)
                     {
-                        Colorful.Console.WriteLine("Failed to enter the correct password.", Color.Red);
+                        Colorful.Console.WriteLine("Failed to enter the correct password. \nProgram terminating...", Color.Red);
                         System.Console.ReadLine();
                         break;
                     }
@@ -168,6 +168,10 @@ namespace EscapeRoomApp
                         Colorful.Console.WriteLine("\n", Color.White);
                         Start();
                     }
+                    else
+                    {
+                        continue;
+                    }
                 }
             }
         }
@@ -176,8 +180,14 @@ namespace EscapeRoomApp
         static void AdminMenu()
         //Gets called when the user inputs the correct password.
         {
-            Colorful.Console.WriteLine("\nWhat do you wish to do?\n(1) Edit Escape Room information\n(2) Check the reservations", Color.White);
+            Colorful.Console.WriteLine("\nWhat do you wish to do?\n(1) Edit Escape Room information\n(2) Check the reservations \n(3) Log-out as Admin", Color.White);
             string AdminChoice = System.Console.ReadLine();
+            if (AdminChoice == "3")
+            {
+                Attempts = 0;
+                Colorful.Console.WriteLine("\n", Color.White);
+                Start();
+            }
         }
 
     }
