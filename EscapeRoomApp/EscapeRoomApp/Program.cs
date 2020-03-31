@@ -26,16 +26,19 @@ namespace EscapeRoomApp
 
             if (UserType == "1")
             {
-                Colorful.Console.WriteLine("\nWelcome Client.\n", Color.LawnGreen);
+                System.Console.Clear();
+                Colorful.Console.WriteLine("Welcome Client.\n", Color.LawnGreen);
                 ClientMenu();
             }
             else if (UserType == "2")
             {
+                System.Console.Clear();
                 PasswordCheck();
             }
             else
             {
-                Colorful.Console.WriteLine("\nInvalid input!\n", Color.Red);
+                System.Console.Clear();
+                Colorful.Console.WriteLine("Invalid input!\n", Color.Red);
                 Start();
             }
         }
@@ -49,7 +52,8 @@ namespace EscapeRoomApp
             string ClientAction = System.Console.ReadLine();
             if (ClientAction == "1")
             {
-                Colorful.Console.WriteLine("\nBelow you will find a list of our Escape Rooms.\n", Color.White);
+                System.Console.Clear();
+                Colorful.Console.WriteLine("Below you will find a list of our Escape Rooms.\n", Color.White);
                 EscapeRoomList();
             }
             else if (ClientAction == "2")
@@ -62,12 +66,14 @@ namespace EscapeRoomApp
             }
             else if (ClientAction == "4")
             {
-                System.Console.WriteLine("\n");
+                System.Console.Clear();
                 Start();
             }
             else
             {
-                Colorful.Console.WriteLine("Invalid input!", Color.Red);
+                System.Console.Clear();
+                Colorful.Console.WriteLine("Invalid input!\n", Color.Red);
+                ClientMenu();
             }
         }
 
@@ -78,49 +84,54 @@ namespace EscapeRoomApp
             Colorful.Console.WriteLine("Which Escape Room would you like to check out?", Color.White);
             System.Console.WriteLine("(1) Clumsy Clowns\n(2) Hidden Evidence\n(3) Bank Job \n(4) Up for Adoption \n(5) Killer Clowns \n(6) Return to Menu");
             string EscapeRoomNumber = System.Console.ReadLine();
+            System.Console.Clear();
             if (EscapeRoomNumber == "1")
             {
-                System.Console.WriteLine("\nName: Clumsy Clowns\nDescription: The participants have accidentally been locked in a room by clumsy clowns.\n             The participants must escape the room in order to make it to the circus show on time.\nAge: Children\nTime: 60 minutes\nLocation: Wijnhaven 107, 3011 WN Rotterdam\n\nContact information:\nPhone number: 010-1234567\nEmail: escape.room@hr.nl\n");
-                Colorful.Console.WriteLine("Press any key to continue.\n", Color.White);
+                System.Console.WriteLine("Name: Clumsy Clowns\nDescription: The participants have accidentally been locked in a room by clumsy clowns.\n             The participants must escape the room in order to make it to the circus show on time.\nAge: Children\nTime: 60 minutes\nLocation: Wijnhaven 107, 3011 WN Rotterdam\n\nContact information:\nPhone number: 010-1234567\nEmail: escape.room@hr.nl\n");
+                Colorful.Console.WriteLine("Press any key to continue.", Color.White);
                 System.Console.ReadKey();
+                System.Console.Clear();
                 EscapeRoomList();
             }
             else if (EscapeRoomNumber == "2")
             {
-                System.Console.WriteLine("\nName: Hidden Evidence\nDescription: The innocent participants have been imprisoned by a corrupt police officer.\n             They must escape with the evidence the police officer is trying to hide so that he can be arrested.\nAge: All ages\nTime: 60 minutes\nLocation: Wijnhaven 107, 3011 WN Rotterdam\n\nContact information:\nPhone number: 010-1234567\nEmail: escape.room@hr.nl\n");
-                Colorful.Console.WriteLine("Press any key to continue.\n", Color.White);
+                System.Console.WriteLine("Name: Hidden Evidence\nDescription: The innocent participants have been imprisoned by a corrupt police officer.\n             They must escape with the evidence the police officer is trying to hide so that he can be arrested.\nAge: All ages\nTime: 60 minutes\nLocation: Wijnhaven 107, 3011 WN Rotterdam\n\nContact information:\nPhone number: 010-1234567\nEmail: escape.room@hr.nl\n");
+                Colorful.Console.WriteLine("Press any key to continue.", Color.White);
                 System.Console.ReadKey();
+                System.Console.Clear();
                 EscapeRoomList();
             }
             else if (EscapeRoomNumber == "3")
             {
-                System.Console.WriteLine("\nName: Bank Job \nDescription: The bank robbers have locked themselves in the bank vault at night.\n             They must get out of the vault with all of the money before they're discovered and arrested by the police.\nAge: All ages\nTime: 60 minutes\nLocation: Wijnhaven 107, 3011 WN Rotterdam\n\nContact information:\nPhone number: 010-1234567\nEmail: escape.room@hr.nl\n");
-                Colorful.Console.WriteLine("Press any key to continue.\n", Color.White);
+                System.Console.WriteLine("Name: Bank Job \nDescription: The bank robbers have locked themselves in the bank vault at night.\n             They must get out of the vault with all of the money before they're discovered and arrested by the police.\nAge: All ages\nTime: 60 minutes\nLocation: Wijnhaven 107, 3011 WN Rotterdam\n\nContact information:\nPhone number: 010-1234567\nEmail: escape.room@hr.nl\n");
+                Colorful.Console.WriteLine("Press any key to continue.", Color.White);
                 System.Console.ReadKey();
+                System.Console.Clear();
                 EscapeRoomList();
             }
             else if (EscapeRoomNumber == "4")
             {
-                System.Console.WriteLine("\nName: Up for Adoption \nDescription: The participants are investigating the disappearance of a young adopted girl,\n             they quickly find out that weird things are happening in her old room.\n             They must solve all of the puzzles and escape or they will be imprisoned in her room forever.\nAge: 16+ \nTime: 60 minutes\nLocation: Wijnhaven 107, 3011 WN Rotterdam\n\nContact information:\nPhone number: 010-1234567\nEmail: escape.room@hr.nl\n");
-                Colorful.Console.WriteLine("Press any key to continue.\n", Color.White);
+                System.Console.WriteLine("Name: Up for Adoption \nDescription: The participants are investigating the disappearance of a young adopted girl,\n             they quickly find out that weird things are happening in her old room.\n             They must solve all of the puzzles and escape or they will be imprisoned in her room forever.\nAge: 16+ \nTime: 60 minutes\nLocation: Wijnhaven 107, 3011 WN Rotterdam\n\nContact information:\nPhone number: 010-1234567\nEmail: escape.room@hr.nl\n");
+                Colorful.Console.WriteLine("Press any key to continue.", Color.White);
                 System.Console.ReadKey();
+                System.Console.Clear();
                 EscapeRoomList();
             }
             else if (EscapeRoomNumber == "5")
             {
-                System.Console.WriteLine("\nName: Killer Clowns\nDescription: The participants have been locked up by bloodthirsty clowns.\n             They must escape before the clowns return to finish the job.\nAge: 16+\nTime: 60 minutes\nLocation: Wijnhaven 107, 3011 WN Rotterdam\n\nContact information:\nPhone number: 010-1234567\nEmail: escape.room@hr.nl\n");
-                Colorful.Console.WriteLine("Press any key to continue.\n", Color.White);
+                System.Console.WriteLine("Name: Killer Clowns\nDescription: The participants have been locked up by bloodthirsty clowns.\n             They must escape before the clowns return to finish the job.\nAge: 16+\nTime: 60 minutes\nLocation: Wijnhaven 107, 3011 WN Rotterdam\n\nContact information:\nPhone number: 010-1234567\nEmail: escape.room@hr.nl\n");
+                Colorful.Console.WriteLine("Press any key to continue.", Color.White);
                 System.Console.ReadKey();
+                System.Console.Clear();
                 EscapeRoomList();
             }
             else if (EscapeRoomNumber == "6")
             {
-                System.Console.WriteLine("");
                 ClientMenu();
             }
             else
             {
-                Colorful.Console.WriteLine("\nInvalid input!\n", Color.Red);
+                Colorful.Console.WriteLine("Invalid input!\n", Color.Red);
                 EscapeRoomList();
             }
         }
@@ -144,11 +155,12 @@ namespace EscapeRoomApp
             string AdminPassword = "Admin";
             while (Attempts < 3)
             {
-                Colorful.Console.WriteLine("\nPlease enter the password:", Color.White);
+                Colorful.Console.WriteLine("Please enter the password:", Color.White);
                 string PasswordInput = System.Console.ReadLine();
                 if (PasswordInput == AdminPassword)
                 {
-                    Colorful.Console.WriteLine("\nWelcome Admin.", Color.LawnGreen);
+                    System.Console.Clear();
+                    Colorful.Console.WriteLine("Welcome Admin.", Color.LawnGreen);
                     Attempts = 3;
                     AdminMenu();
                 }
@@ -157,20 +169,23 @@ namespace EscapeRoomApp
                     Attempts++;
                     if (Attempts == 3)
                     {
+                        System.Console.Clear();
                         Colorful.Console.WriteLine("Failed to enter the correct password. \nProgram terminating...", Color.Red);
                         System.Console.ReadLine();
                         break;
                     }
-                    Colorful.Console.WriteLine("\nInvalid password.", Color.Red);
+                    System.Console.Clear();
+                    Colorful.Console.WriteLine("Invalid password.", Color.Red);
                     Colorful.Console.WriteLine("What would you like to do? \n(1) Enter password again \n(2) Return to Start Menu", Color.White);
                     string TryAgain = System.Console.ReadLine();
                     if (TryAgain == "1")
                     {
+                        System.Console.Clear();
                         continue;
                     }
                     else if (TryAgain == "2")
                     {
-                        Colorful.Console.WriteLine("\n", Color.White);
+                        Colorful.Console.Clear();
                         Start();
                     }
                     else
