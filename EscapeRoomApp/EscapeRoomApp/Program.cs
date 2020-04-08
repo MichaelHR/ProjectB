@@ -211,7 +211,7 @@ namespace EscapeRoomApp
             if (AdminChoice == "3")
             {
                 Attempts = 0;
-                Colorful.Console.WriteLine("\n", Color.White);
+                System.Console.Clear();
                 Start();
             }
         }
