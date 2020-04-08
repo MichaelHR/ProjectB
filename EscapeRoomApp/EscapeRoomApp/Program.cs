@@ -200,14 +200,26 @@ namespace EscapeRoomApp
         static void AdminMenu()
         //Gets called when the user inputs the correct password.
         {
-            Colorful.Console.WriteLine("\nWhat do you wish to do?\n(1) Edit Escape Room information\n(2) Check the reservations \n(3) Log-out as Admin", Color.White);
+            Colorful.Console.WriteLine("\nWhat do you wish to do?\n", Color.White);
+            System.Console.WriteLine("(1) Edit Escape Room information\n(2) Check the reservations \n(3) Log-out as Admin");
             string AdminChoice = System.Console.ReadLine();
+            if (AdminChoice == "1")
+            {
+                Colorful.Console.WriteLine("\n", Color.White);
+                EditInfo();
+            }
             if (AdminChoice == "3")
             {
                 Attempts = 0;
                 Colorful.Console.WriteLine("\n", Color.White);
                 Start();
             }
+        }
+
+        static void EditInfo()
+        {
+            Colorful.Console.WriteLine("Which escape room would you like to edit?\n", Color.White);
+            System.Console.WriteLine("1. //name of room 1\n2. //name of room 2\n3. //name of room 3\n4. //name of room 4\n5. //name of room 5");
         }
 
     }
