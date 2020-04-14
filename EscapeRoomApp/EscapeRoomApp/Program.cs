@@ -5,6 +5,21 @@ using System.Drawing;
 
 namespace EscapeRoomApp
 {
+    public static class Global
+    {
+        //escape room names
+        public static string EscName1 = "Clumsy Clowns";
+        public static string EscName2 = "Hidden Evidence";
+        public static string EscName3 = "Bank Job";
+        public static string EscName4 = "Up for Adoption";
+        public static string EscName5 = "Killer Clowns";
+        //escape room general info
+        public static string EscPlayers1 = "6-8";
+        public static string EscPlayers2 = "3-5";
+        public static string EscPlayers3 = "3-6";
+        public static string EscPlayers4 = "4-7";
+        public static string EscPlayers5 = "3-5";
+    }
     class Program
     {
         public static int Attempts;
@@ -81,13 +96,14 @@ namespace EscapeRoomApp
         static void EscapeRoomList()
         //Gets called when the user chooses the option to check out the escape rooms.
         {
+            
             Colorful.Console.WriteLine("Which Escape Room would you like to check out?", Color.White);
-            System.Console.WriteLine("(1) Clumsy Clowns\n(2) Hidden Evidence\n(3) Bank Job \n(4) Up for Adoption \n(5) Killer Clowns \n(6) Return to Menu");
+            System.Console.WriteLine("(1) " + Global.EscName1 + "\n(2) " + Global.EscName2 +  "\n(3) " + Global.EscName3 + "\n(4) " + Global.EscName4 + "\n(5) " + Global.EscName5 + "\n(6) Return to Menu");
             string EscapeRoomNumber = System.Console.ReadLine();
             System.Console.Clear();
             if (EscapeRoomNumber == "1")
             {
-                System.Console.WriteLine("Name: Clumsy Clowns\nDescription: The participants have accidentally been locked in a room by clumsy clowns.\n             The participants must escape the room in order to make it to the circus show on time.\nAge: Children\nTime: 60 minutes\nLocation: Wijnhaven 107, 3011 WN Rotterdam\n\nContact information:\nPhone number: 010-1234567\nEmail: escape.room@hr.nl\n");
+                System.Console.WriteLine("Name: " + Global.EscName1 + "\nDescription: The participants have accidentally been locked in a room by clumsy clowns.\n             The participants must escape the room in order to make it to the circus show on time.\nAge: Children\nTime: 60 minutes\nAmount of players: " + Global.EscPlayers1 + "\nLocation: Wijnhaven 107, 3011 WN Rotterdam\n\nContact information:\nPhone number: 010-1234567\nEmail: escape.room@hr.nl\n");
                 Colorful.Console.WriteLine("Press any key to continue.", Color.White);
                 System.Console.ReadKey();
                 System.Console.Clear();
@@ -95,7 +111,7 @@ namespace EscapeRoomApp
             }
             else if (EscapeRoomNumber == "2")
             {
-                System.Console.WriteLine("Name: Hidden Evidence\nDescription: The innocent participants have been imprisoned by a corrupt police officer.\n             They must escape with the evidence the police officer is trying to hide so that he can be arrested.\nAge: All ages\nTime: 60 minutes\nLocation: Wijnhaven 107, 3011 WN Rotterdam\n\nContact information:\nPhone number: 010-1234567\nEmail: escape.room@hr.nl\n");
+                System.Console.WriteLine("Name: "+ Global.EscName2 + "\nDescription: The innocent participants have been imprisoned by a corrupt police officer.\n             They must escape with the evidence the police officer is trying to hide so that he can be arrested.\nAge: All ages\nTime: 60 minutes\nAmount of players: " + Global.EscPlayers2 + "\nLocation: Wijnhaven 107, 3011 WN Rotterdam\n\nContact information:\nPhone number: 010-1234567\nEmail: escape.room@hr.nl\n");
                 Colorful.Console.WriteLine("Press any key to continue.", Color.White);
                 System.Console.ReadKey();
                 System.Console.Clear();
@@ -103,7 +119,7 @@ namespace EscapeRoomApp
             }
             else if (EscapeRoomNumber == "3")
             {
-                System.Console.WriteLine("Name: Bank Job \nDescription: The bank robbers have locked themselves in the bank vault at night.\n             They must get out of the vault with all of the money before they're discovered and arrested by the police.\nAge: All ages\nTime: 60 minutes\nLocation: Wijnhaven 107, 3011 WN Rotterdam\n\nContact information:\nPhone number: 010-1234567\nEmail: escape.room@hr.nl\n");
+                System.Console.WriteLine("Name: "+ Global.EscName3 + "\nDescription: The bank robbers have locked themselves in the bank vault at night.\n             They must get out of the vault with all of the money before they're discovered and arrested by the police.\nAge: All ages\nTime: 60 minutes\nAmount of players: " + Global.EscPlayers3 + "\nLocation: Wijnhaven 107, 3011 WN Rotterdam\n\nContact information:\nPhone number: 010-1234567\nEmail: escape.room@hr.nl\n");
                 Colorful.Console.WriteLine("Press any key to continue.", Color.White);
                 System.Console.ReadKey();
                 System.Console.Clear();
@@ -111,7 +127,7 @@ namespace EscapeRoomApp
             }
             else if (EscapeRoomNumber == "4")
             {
-                System.Console.WriteLine("Name: Up for Adoption \nDescription: The participants are investigating the disappearance of a young adopted girl,\n             they quickly find out that weird things are happening in her old room.\n             They must solve all of the puzzles and escape or they will be imprisoned in her room forever.\nAge: 16+ \nTime: 60 minutes\nLocation: Wijnhaven 107, 3011 WN Rotterdam\n\nContact information:\nPhone number: 010-1234567\nEmail: escape.room@hr.nl\n");
+                System.Console.WriteLine("Name: "+ Global.EscName4 + "\nDescription: The participants are investigating the disappearance of a young adopted girl,\n             they quickly find out that weird things are happening in her old room.\n             They must solve all of the puzzles and escape or they will be imprisoned in her room forever.\nAge: 16+ \nTime: 60 minutes\nAmount of players: " + Global.EscPlayers4 + "\nLocation: Wijnhaven 107, 3011 WN Rotterdam\n\nContact information:\nPhone number: 010-1234567\nEmail: escape.room@hr.nl\n");
                 Colorful.Console.WriteLine("Press any key to continue.", Color.White);
                 System.Console.ReadKey();
                 System.Console.Clear();
@@ -119,7 +135,7 @@ namespace EscapeRoomApp
             }
             else if (EscapeRoomNumber == "5")
             {
-                System.Console.WriteLine("Name: Killer Clowns\nDescription: The participants have been locked up by bloodthirsty clowns.\n             They must escape before the clowns return to finish the job.\nAge: 16+\nTime: 60 minutes\nLocation: Wijnhaven 107, 3011 WN Rotterdam\n\nContact information:\nPhone number: 010-1234567\nEmail: escape.room@hr.nl\n");
+                System.Console.WriteLine("Name: "+ Global.EscName5 + "\nDescription: The participants have been locked up by bloodthirsty clowns.\n             They must escape before the clowns return to finish the job.\nAge: 16+\nTime: 60 minutes\nAmount of players: " + Global.EscPlayers5 + "\nLocation: Wijnhaven 107, 3011 WN Rotterdam\n\nContact information:\nPhone number: 010-1234567\nEmail: escape.room@hr.nl\n");
                 Colorful.Console.WriteLine("Press any key to continue.", Color.White);
                 System.Console.ReadKey();
                 System.Console.Clear();
@@ -219,7 +235,113 @@ namespace EscapeRoomApp
         static void EditInfo()
         {
             Colorful.Console.WriteLine("Which escape room would you like to edit?\n", Color.White);
-            System.Console.WriteLine("1. //name of room 1\n2. //name of room 2\n3. //name of room 3\n4. //name of room 4\n5. //name of room 5");
+            System.Console.WriteLine("1. " + Global.EscName1 + "\n2. "+ Global.EscName2 + "\n3. " + Global.EscName3 + "\n4. " + Global.EscName4 + "\n5. "+ Global.EscName5 + "\n6. Return");
+            string EscapeRoomNumber = System.Console.ReadLine();
+
+            if (EscapeRoomNumber == "1")
+            {
+                Colorful.Console.WriteLine("What would you like to edit?\n", Color.White);
+                System.Console.WriteLine("1. Name\n2. General Information");
+                string EditNumber = System.Console.ReadLine();
+                if (EditNumber == "1")
+                {
+                    System.Console.WriteLine("Type the new name here: ");
+                    string NewName = System.Console.ReadLine();
+                    Global.EscName1 = NewName;
+                    EditInfo();
+                }
+                if (EditNumber == "2")
+                {
+                    System.Console.WriteLine("enter the new amount of players");
+                    string NewNumber = System.Console.ReadLine();
+                    Global.EscPlayers1 = NewNumber;
+                    EditInfo();
+                }
+            }
+            if (EscapeRoomNumber == "2")
+            {
+                Colorful.Console.WriteLine("What would you like to edit?\n", Color.White);
+                System.Console.WriteLine("1. Name\n2. General Information");
+                string EditNumber = System.Console.ReadLine();
+                if (EditNumber == "1")
+                {
+                    System.Console.WriteLine("Type the new name here: ");
+                    string NewName = System.Console.ReadLine();
+                    Global.EscName2 = NewName;
+                    EditInfo();
+                }
+                if (EditNumber == "2")
+                {
+                     System.Console.WriteLine("enter the new amount of players");
+                     string NewNumber = System.Console.ReadLine();
+                     Global.EscPlayers2 = NewNumber;
+                     EditInfo();
+                }
+            }
+            if (EscapeRoomNumber == "3")
+            {
+                Colorful.Console.WriteLine("What would you like to edit?\n", Color.White);
+                System.Console.WriteLine("1. Name\n2. General Information");
+                string EditNumber = System.Console.ReadLine();
+                if (EditNumber == "1")
+                {
+                    System.Console.WriteLine("Type the new name here: ");
+                    string NewName = System.Console.ReadLine();
+                    Global.EscName3 = NewName;
+                    EditInfo();
+                }
+                if (EditNumber == "2")
+                {
+                    System.Console.WriteLine("enter the new amount of players");
+                    string NewNumber = System.Console.ReadLine();
+                    Global.EscPlayers3 = NewNumber;
+                    EditInfo();
+                }
+            }
+            if (EscapeRoomNumber == "4")
+            {
+                Colorful.Console.WriteLine("What would you like to edit?\n", Color.White);
+                System.Console.WriteLine("1. Name\n2. General Information");
+                string EditNumber = System.Console.ReadLine();
+                if (EditNumber == "1")
+                {
+                    System.Console.WriteLine("Type the new name here: ");
+                    string NewName = System.Console.ReadLine();
+                    Global.EscName4 = NewName;
+                    EditInfo();
+                }
+                if (EditNumber == "2")
+                {
+                    System.Console.WriteLine("enter the new amount of players");
+                    string NewNumber = System.Console.ReadLine();
+                    Global.EscPlayers4 = NewNumber;
+                    EditInfo();
+                }
+            }
+            if (EscapeRoomNumber == "5")
+            {
+                Colorful.Console.WriteLine("What would you like to edit?\n", Color.White);
+                System.Console.WriteLine("1. Name\n2. General Information");
+                string EditNumber = System.Console.ReadLine();
+                if (EditNumber == "1")
+                {
+                    System.Console.WriteLine("Type the new name here: ");
+                    string NewName = System.Console.ReadLine();
+                    Global.EscName5 = NewName;
+                    EditInfo();
+                }
+                if (EditNumber == "2")
+                {
+                    System.Console.WriteLine("enter the new amount of players");
+                    string NewNumber = System.Console.ReadLine();
+                    Global.EscPlayers5 = NewNumber;
+                    EditInfo();
+                }
+            }
+            if (EscapeRoomNumber == "6")
+            {
+                AdminMenu();
+            }
         }
 
     }
