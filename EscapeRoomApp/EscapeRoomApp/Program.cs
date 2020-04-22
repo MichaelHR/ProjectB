@@ -233,7 +233,7 @@ namespace EscapeRoomApp
             }
             if (ChoiceNumber == "2")
             {
-                Colorful.Console.WriteLine("\nReservation process cancelled\nTaking you back to Menu...", Color.Red);
+                Colorful.Console.WriteLine("\nReservation process cancelled\nTaking you back to Client Menu...", Color.Red);
                 System.Console.ReadKey();
                 System.Console.Clear();
                 ClientMenu();
@@ -264,9 +264,9 @@ namespace EscapeRoomApp
             }
             if (Global.ReservationPlayerAmount > Global.ReservationEscapeRoomMaxCount)
             {
-                Colorful.Console.WriteLine("Your reservation exceeds the capacity of this room", Color.Red);
-                Colorful.Console.WriteFormatted("The Maximum allowed amount of players is: ", Color.Red);
-                Colorful.Console.WriteLine(Global.ReservationEscapeRoomMaxCount, Color.Orange);
+                Colorful.Console.WriteLine("\nYour reservation exceeds the capacity of this room", Color.Red);
+                Colorful.Console.WriteFormatted("The maximum allowed capacity for this room is: ", Color.Red);
+                Colorful.Console.WriteLine(Global.ReservationEscapeRoomMaxCount + " players", Color.Orange);
                 ReservationPlayerCheck();
             }
 
