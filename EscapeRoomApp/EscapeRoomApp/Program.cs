@@ -239,7 +239,7 @@ namespace EscapeRoomApp
                 ClientMenu();
             }
             else 
-            { 5
+            { 
             System.Console.Clear();
             Colorful.Console.WriteLine("Invalid input!", Color.Red);
             System.Console.ReadKey();
