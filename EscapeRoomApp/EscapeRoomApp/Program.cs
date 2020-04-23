@@ -21,6 +21,13 @@ namespace EscapeRoomApp
         public static int EscPlayers4max = 7;
         public static int EscPlayers5max = 5;
 
+        // Minimum players for each Escape Room
+        public static int EscPlayers1min = 3;
+        public static int EscPlayers2min = 2;
+        public static int EscPlayers3min = 3;
+        public static int EscPlayers4min = 3;
+        public static int EscPlayers5min = 2;
+
         // Reservation general info
         public static int ReservationPlayerAmount = 0;
         public static int ReservationEscapeRoomMaxCount = 0;
@@ -120,6 +127,7 @@ namespace EscapeRoomApp
                     "Age: Children" + "\n" +
                     "Time: 60 minutes" + "\n" +
                     "Maximum amount of players: " + Global.EscPlayers1max + "\n" +
+                    "Minimum amount of players: " + Global.EscPlayers1min + "\n" +
                     "Location: Wijnhaven 107, 3011 WN Rotterdam" + "\n" +
                     "\nContact information:\n" + 
                     "Phone number: 010-1234567\nEmail: escape.room@hr.nl\n");
@@ -137,6 +145,7 @@ namespace EscapeRoomApp
                     "Age: All ages \n" +
                     "Time: 60 minutes \n" +
                     "Maximum amount of players: " + Global.EscPlayers2max + "\n" +
+                    "Minimum amount of players: " + Global.EscPlayers2min + "\n" +
                     "Location: Wijnhaven 107, 3011 WN Rotterdam\n" + "\n" +
                     "Contact information:\n" +
                     "Phone number: 010-1234567 \n" +
@@ -155,6 +164,7 @@ namespace EscapeRoomApp
                     "Age: All ages \n" +
                     "Time: 60 minutes \n" +
                     "Maximum amount of players: " + Global.EscPlayers3max + "\n" +
+                    "Minimum amount of players: " + Global.EscPlayers3min + "\n" +
                     "Location: Wijnhaven 107, 3011 WN Rotterdam \n" + "\n" + 
                     "Contact information:\n" +
                     "Phone number: 010-1234567 \n" +
@@ -174,6 +184,7 @@ namespace EscapeRoomApp
                     "Age: 16+ \n" +
                     "Time: 60 minutes \n" +
                     "Maximum amount of players: " + Global.EscPlayers4max + "\n" +
+                    "Minimum amount of players: " + Global.EscPlayers4min + "\n" +
                     "Location: Wijnhaven 107, 3011 WN Rotterdam \n" + "\n" +
                     "Contact information: \n" +
                     "Phone number: 010-1234567 \n" +
@@ -192,6 +203,7 @@ namespace EscapeRoomApp
                     "Age: 16+ \n" +
                     "Time: 60 minutes \n" +
                     "Maximum amount of players: " + Global.EscPlayers5max + "\n" +
+                    "Minimum amount of players: " + Global.EscPlayers5min + "\n" +
                     "Location: Wijnhaven 107, 3011 WN Rotterdam \n" + "\n" + 
                     "Contact information: \n" +
                     "Phone number: 010-1234567 \n" +
@@ -417,25 +429,34 @@ namespace EscapeRoomApp
             if (EscapeRoomNumber == "1")
             {
                 System.Console.Clear();
-                Colorful.Console.WriteLine("\nWhat would you like to edit? \n", Color.White);
+                Colorful.Console.WriteLine("What would you like to edit? \n", Color.White);
                 System.Console.WriteLine(
-                    "(1) Name\n" +
-                    "(2) Maximum player amount");
+                    "(1) Escape Room Name \n" +
+                    "(2) Maximum players allowed \n" +
+                    "(3) Minimum players allowed");
                 string EditNumber = System.Console.ReadLine();
+
                 if (EditNumber == "1")
                 {
-                    System.Console.WriteLine("\nEnter the new name: ");
+                    System.Console.WriteLine("\nType the new name here: ");
                     string NewName = System.Console.ReadLine();
-                    Global.EscName1 = NewName;
+                    Global.EscName2 = NewName;
                     EditInfo();
                 }
-                if (EditNumber == "2")
+                if (EditNumber == "2" || EditNumber == "3")
                 {
-                    System.Console.WriteLine("Enter the new amount of players: ");
+                    System.Console.WriteLine("\nEnter the new amount of players: ");
                     var readline = System.Console.ReadLine();
                     if (int.TryParse(readline, out int NewNumber))
                     {
-                        Global.EscPlayers1max = NewNumber;
+                        if (EditNumber == "2")
+                        {
+                            Global.EscPlayers1max = NewNumber;
+                        }
+                        else if (EditNumber == "3")
+                        {
+                            Global.EscPlayers1min = NewNumber;
+                        }
                     }
                     else
                     {
@@ -448,8 +469,12 @@ namespace EscapeRoomApp
             {
                 System.Console.Clear();
                 Colorful.Console.WriteLine("What would you like to edit? \n", Color.White);
-                System.Console.WriteLine("(1) Name\n(2) Maximum player amount allowed");
+                System.Console.WriteLine(
+                    "(1) Escape Room Name \n" +
+                    "(2) Maximum players allowed \n" +
+                    "(3) Minimum players allowed");
                 string EditNumber = System.Console.ReadLine();
+
                 if (EditNumber == "1")
                 {
                     System.Console.WriteLine("\nType the new name here: ");
@@ -457,13 +482,20 @@ namespace EscapeRoomApp
                     Global.EscName2 = NewName;
                     EditInfo();
                 }
-                if (EditNumber == "2")
+                if (EditNumber == "2" || EditNumber == "3")
                 {
-                    System.Console.WriteLine("Enter the new amount of players: ");
+                    System.Console.WriteLine("\nEnter the new amount of players: ");
                     var readline = System.Console.ReadLine();
                     if (int.TryParse(readline, out int NewNumber))
                     {
-                        Global.EscPlayers2max = NewNumber;
+                        if (EditNumber == "2")
+                        {
+                            Global.EscPlayers2max = NewNumber;
+                        }
+                        else if (EditNumber == "3")
+                        {
+                            Global.EscPlayers2min = NewNumber;
+                        }
                     }
                     else
                     {
@@ -476,22 +508,33 @@ namespace EscapeRoomApp
             {
                 System.Console.Clear();
                 Colorful.Console.WriteLine("What would you like to edit? \n", Color.White);
-                System.Console.WriteLine("(1) Name\n(2) Maximum player amount allowed");
+                System.Console.WriteLine(
+                    "(1) Escape Room Name \n" +
+                    "(2) Maximum players allowed \n" +
+                    "(3) Minimum players allowed");
                 string EditNumber = System.Console.ReadLine();
+
                 if (EditNumber == "1")
                 {
                     System.Console.WriteLine("\nType the new name here: ");
                     string NewName = System.Console.ReadLine();
-                    Global.EscName3 = NewName;
+                    Global.EscName2 = NewName;
                     EditInfo();
                 }
-                if (EditNumber == "2")
+                if (EditNumber == "2" || EditNumber == "3")
                 {
-                    System.Console.WriteLine("Enter the new amount of players: ");
+                    System.Console.WriteLine("\nEnter the new amount of players: ");
                     var readline = System.Console.ReadLine();
                     if (int.TryParse(readline, out int NewNumber))
                     {
-                        Global.EscPlayers3max = NewNumber;
+                        if (EditNumber == "2")
+                        {
+                            Global.EscPlayers3max = NewNumber;
+                        }
+                        else if (EditNumber == "3")
+                        {
+                            Global.EscPlayers3min = NewNumber;
+                        }
                     }
                     else
                     {
@@ -503,23 +546,34 @@ namespace EscapeRoomApp
             if (EscapeRoomNumber == "4")
             {
                 System.Console.Clear();
-                Colorful.Console.WriteLine("What would you like to edit?\n", Color.White);
-                System.Console.WriteLine("(1) Name\n(2) Maximum player amount allowed");
+                Colorful.Console.WriteLine("What would you like to edit? \n", Color.White);
+                System.Console.WriteLine(
+                    "(1) Escape Room Name \n" +
+                    "(2) Maximum players allowed \n" +
+                    "(3) Minimum players allowed");
                 string EditNumber = System.Console.ReadLine();
+
                 if (EditNumber == "1")
                 {
                     System.Console.WriteLine("\nType the new name here: ");
                     string NewName = System.Console.ReadLine();
-                    Global.EscName4 = NewName;
+                    Global.EscName2 = NewName;
                     EditInfo();
                 }
-                if (EditNumber == "2")
+                if (EditNumber == "2" || EditNumber == "3")
                 {
-                    System.Console.WriteLine("Enter the new amount of players: ");
+                    System.Console.WriteLine("\nEnter the new amount of players: ");
                     var readline = System.Console.ReadLine();
                     if (int.TryParse(readline, out int NewNumber))
                     {
-                        Global.EscPlayers4max = NewNumber;
+                        if (EditNumber == "2")
+                        {
+                            Global.EscPlayers4max = NewNumber;
+                        }
+                        else if (EditNumber == "3")
+                        {
+                            Global.EscPlayers4min = NewNumber;
+                        }
                     }
                     else
                     {
@@ -532,22 +586,33 @@ namespace EscapeRoomApp
             {
                 System.Console.Clear();
                 Colorful.Console.WriteLine("What would you like to edit? \n", Color.White);
-                System.Console.WriteLine("(1) Name\n(2) Maximum player amount allowed");
+                System.Console.WriteLine(
+                    "(1) Escape Room Name \n" +
+                    "(2) Maximum players allowed \n" +
+                    "(3) Minimum players allowed");
                 string EditNumber = System.Console.ReadLine();
+
                 if (EditNumber == "1")
                 {
                     System.Console.WriteLine("\nType the new name here: ");
                     string NewName = System.Console.ReadLine();
-                    Global.EscName5 = NewName;
+                    Global.EscName2 = NewName;
                     EditInfo();
                 }
-                if (EditNumber == "2")
+                if (EditNumber == "2" || EditNumber == "3")
                 {
-                    System.Console.WriteLine("Enter the new amount of players: ");
+                    System.Console.WriteLine("\nEnter the new amount of players: ");
                     var readline = System.Console.ReadLine();
                     if (int.TryParse(readline, out int NewNumber))
                     {
-                        Global.EscPlayers5max = NewNumber;
+                        if (EditNumber == "2")
+                        {
+                            Global.EscPlayers5max = NewNumber;
+                        }
+                        else if (EditNumber == "3")
+                        {
+                            Global.EscPlayers5min = NewNumber;
+                        }
                     }
                     else
                     {
