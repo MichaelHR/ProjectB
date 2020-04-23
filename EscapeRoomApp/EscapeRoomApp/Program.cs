@@ -91,7 +91,8 @@ namespace EscapeRoomApp
             }
             else if (ClientAction == "3")
             {
-                System.Console.WriteLine("Via JSON");
+                CancelReservationMenu();
+
             }
             else if (ClientAction == "4")
             {
@@ -353,6 +354,24 @@ namespace EscapeRoomApp
                 ReservationPlayerCheck();
             }
 
+        }
+
+        static void CancelReservationMenu()
+        {
+            System.Console.Clear();
+            Colorful.Console.WriteLine("\nPlease enter the name you have placed your reservation under: ", Color.White);
+            string CancellationName = System.Console.ReadLine();
+            Colorful.Console.WriteFormatted("\nThe following reservations have been made under the name: ", Color.White);
+            Colorful.Console.WriteLine(CancellationName, Color.Yellow);
+            Colorful.Console.WriteLine(
+                "(1) ...");
+            System.Console.ReadKey();
+            System.Environment.Exit(1);
+
+            //TO BE ADDED:
+            //JSON integratie om naam te checken
+            //JSON systeem dat alle geplande reservaties onder de naam, vanaf de huidige datum, print in de console
+            //JSON integratie om naam uit systeem te halen voor de geselecteerde reservatie (indien er meerdere zijn)
         }
 
         static void PasswordCheck()
