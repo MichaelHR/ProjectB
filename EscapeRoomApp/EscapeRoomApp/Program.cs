@@ -31,6 +31,8 @@ namespace EscapeRoomApp
         // Reservation general info
         public static int ReservationPlayerAmount = 0;
         public static int ReservationEscapeRoomMaxCount = 0;
+        public static int ReservationEscapeRoomMinCount = 0;
+
     }
     class Program
     {
@@ -236,26 +238,31 @@ namespace EscapeRoomApp
             {
                 ReservationEscapeRoomName = Global.EscName1;
                 Global.ReservationEscapeRoomMaxCount = Global.EscPlayers1max;
+                Global.ReservationEscapeRoomMinCount = Global.EscPlayers1min;
             }
             else if (ReservationEscapeRoomNumber == "2")
             {
                 ReservationEscapeRoomName = Global.EscName2;
                 Global.ReservationEscapeRoomMaxCount = Global.EscPlayers2max;
+                Global.ReservationEscapeRoomMinCount = Global.EscPlayers2min;
             }
             else if (ReservationEscapeRoomNumber == "3")
             {
                 ReservationEscapeRoomName = Global.EscName3;
                 Global.ReservationEscapeRoomMaxCount = Global.EscPlayers3max;
+                Global.ReservationEscapeRoomMinCount = Global.EscPlayers3min;
             }
             else if (ReservationEscapeRoomNumber == "4")
             {
                 ReservationEscapeRoomName = Global.EscName4;
                 Global.ReservationEscapeRoomMaxCount = Global.EscPlayers4max;
+                Global.ReservationEscapeRoomMinCount = Global.EscPlayers4min;
             }
             else if (ReservationEscapeRoomNumber == "5")
             {
                 ReservationEscapeRoomName = Global.EscName5;
                 Global.ReservationEscapeRoomMaxCount = Global.EscPlayers5max;
+                Global.ReservationEscapeRoomMinCount = Global.EscPlayers5min;
             }
             else if (ReservationEscapeRoomNumber == "6")
             {
@@ -336,6 +343,13 @@ namespace EscapeRoomApp
                 Colorful.Console.WriteLine("\nYour reservation exceeds the capacity of this room", Color.Red);
                 Colorful.Console.WriteFormatted("The maximum allowed capacity for this room is: ", Color.Red);
                 Colorful.Console.WriteLine(Global.ReservationEscapeRoomMaxCount + " players", Color.Orange);
+                ReservationPlayerCheck();
+            }
+            if (Global.ReservationPlayerAmount < Global.ReservationEscapeRoomMinCount)
+            {
+                Colorful.Console.WriteLine("\nYour reservation does not meet the minimum player requirement", Color.Red);
+                Colorful.Console.WriteFormatted("The minimum amount of players required is: ", Color.Red);
+                Colorful.Console.WriteLine(Global.ReservationEscapeRoomMinCount + " players", Color.Orange);
                 ReservationPlayerCheck();
             }
 
