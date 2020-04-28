@@ -7,6 +7,9 @@ namespace EscapeRoomApp
 {
     public static class Global
     {
+
+        public static List<ReservationClass> ReservationList = new List<ReservationClass>();
+
         // Names for each Escape Room
         public static string EscName1 = "Clumsy Clowns";
         public static string EscName2 = "Hidden Evidence";
@@ -34,11 +37,11 @@ namespace EscapeRoomApp
         public static int ReservationEscapeRoomMinCount = 0;
 
     }
-    class Program
+    public class Program
     {
         public static int Attempts;
 
-        static void Main()
+        public static void Main()
         //Beginning function.
         {
             Colorful.Console.WriteLine("Welcome to the escape room application.\n", Color.White);
@@ -230,38 +233,38 @@ namespace EscapeRoomApp
 
         static void ReservationMenu()
         {
-            string ReservationEscapeRoomName = "";
+            string Input_ReservationEscapeRoomName = "";
             System.Console.Clear();
             Colorful.Console.WriteLine("\nWhat Escape Room would you like to make a reservation for?", Color.White);
             System.Console.WriteLine("(1) " + Global.EscName1 + "\n(2) " + Global.EscName2 + "\n(3) " + Global.EscName3 + "\n(4) " + Global.EscName4 + "\n(5) " + Global.EscName5 + "\n(6) Return to Menu");
             string ReservationEscapeRoomNumber = System.Console.ReadLine();
             if (ReservationEscapeRoomNumber == "1")
             {
-                ReservationEscapeRoomName = Global.EscName1;
+                Input_ReservationEscapeRoomName = Global.EscName1;
                 Global.ReservationEscapeRoomMaxCount = Global.EscPlayers1max;
                 Global.ReservationEscapeRoomMinCount = Global.EscPlayers1min;
             }
             else if (ReservationEscapeRoomNumber == "2")
             {
-                ReservationEscapeRoomName = Global.EscName2;
+                Input_ReservationEscapeRoomName = Global.EscName2;
                 Global.ReservationEscapeRoomMaxCount = Global.EscPlayers2max;
                 Global.ReservationEscapeRoomMinCount = Global.EscPlayers2min;
             }
             else if (ReservationEscapeRoomNumber == "3")
             {
-                ReservationEscapeRoomName = Global.EscName3;
+                Input_ReservationEscapeRoomName = Global.EscName3;
                 Global.ReservationEscapeRoomMaxCount = Global.EscPlayers3max;
                 Global.ReservationEscapeRoomMinCount = Global.EscPlayers3min;
             }
             else if (ReservationEscapeRoomNumber == "4")
             {
-                ReservationEscapeRoomName = Global.EscName4;
+                Input_ReservationEscapeRoomName = Global.EscName4;
                 Global.ReservationEscapeRoomMaxCount = Global.EscPlayers4max;
                 Global.ReservationEscapeRoomMinCount = Global.EscPlayers4min;
             }
             else if (ReservationEscapeRoomNumber == "5")
             {
-                ReservationEscapeRoomName = Global.EscName5;
+                Input_ReservationEscapeRoomName = Global.EscName5;
                 Global.ReservationEscapeRoomMaxCount = Global.EscPlayers5max;
                 Global.ReservationEscapeRoomMinCount = Global.EscPlayers5min;
             }
@@ -280,25 +283,31 @@ namespace EscapeRoomApp
 
             System.Console.Clear();
             Colorful.Console.WriteFormatted("Placing reservation for: ", Color.White);
-            Colorful.Console.WriteLine(ReservationEscapeRoomName, Color.Orange);
+            Colorful.Console.WriteLine(Input_ReservationEscapeRoomName, Color.Orange);
 
 
             Colorful.Console.WriteLine("\nPlease enter the name you wish to reserve with (first and last name).", Color.White);
             Colorful.Console.WriteLine("Note that you will need this name in order to cancel, make sure to save it.\n", Color.Yellow);
-            string ReservationName = System.Console.ReadLine();
+            string Input_ReservationName = System.Console.ReadLine();
 
             ReservationPlayerCheck();
 
             System.Console.Clear();
             Colorful.Console.WriteFormatted("\nEscape Room: ", Color.White);
-            Colorful.Console.WriteLine(ReservationEscapeRoomName, Color.Yellow);
+            Colorful.Console.WriteLine(Input_ReservationEscapeRoomName, Color.Yellow);
             Colorful.Console.WriteFormatted("Reservation name: ", Color.White);
-            Colorful.Console.WriteLine(ReservationName, Color.Yellow);
+            Colorful.Console.WriteLine(Input_ReservationName, Color.Yellow);
             Colorful.Console.WriteFormatted("Amount of people reserved for: ", Color.White);
             Colorful.Console.WriteLine(Global.ReservationPlayerAmount, Color.Yellow);
-            Confirm();
+            if (Confirm())
+            {
+                ReservationClass Reservation = new ReservationClass
+                    (Input_ReservationName, Input_ReservationEscapeRoomName, Global.ReservationPlayerAmount);
+                Global.ReservationList.Add(Reservation);
+            }
+            
         }
-        static void Confirm()
+        static bool Confirm()
         {
             Colorful.Console.WriteLine("\nWould you like to confirm your reservation?\n(1) Confirm \n(2) Cancel");
             string ChoiceNumber = System.Console.ReadLine();
@@ -306,7 +315,7 @@ namespace EscapeRoomApp
             {
                 Colorful.Console.WriteLine("\nReservation confirmed!", Color.LawnGreen);
                 System.Console.ReadKey();
-                System.Environment.Exit(1);
+                return true;
             }
             if (ChoiceNumber == "2")
             {
@@ -314,13 +323,14 @@ namespace EscapeRoomApp
                 System.Console.ReadKey();
                 System.Console.Clear();
                 ClientMenu();
+                return false;
             }
             else 
             { 
             System.Console.Clear();
             Colorful.Console.WriteLine("Invalid input!", Color.Red);
             System.Console.ReadKey();
-            Confirm();
+            return Confirm();
             }
         }
         
@@ -662,9 +672,15 @@ namespace EscapeRoomApp
         }
 
     }
+    
 
 
-    public class Reservation
+
+
+
+
+
+    /*public class Reservation
     {
         public string name;
 
@@ -673,5 +689,5 @@ namespace EscapeRoomApp
             //List<Reservation>
             name = aName;
         }
-    }
+    }*/
 }
