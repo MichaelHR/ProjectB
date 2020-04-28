@@ -44,13 +44,13 @@ namespace EscapeRoomApp
         public static void Main()
         //Beginning function.
         {
-            Colorful.Console.WriteLine("Welcome to the escape room application.\n", Color.White);
             Start();
         }
 
         static void Start()
         // Gets called at the start of the program.
         {
+            Colorful.Console.WriteLine("Welcome to the escape room application.\n", Color.White);
             Colorful.Console.WriteLine("What type of user are you?", Color.White);
             System.Console.WriteLine("(1) Client");
             System.Console.WriteLine("(2) Admin");
@@ -304,7 +304,11 @@ namespace EscapeRoomApp
                 ReservationClass Reservation = new ReservationClass
                     (Input_ReservationName, Input_ReservationEscapeRoomName, Global.ReservationPlayerAmount);
                 Global.ReservationList.Add(Reservation);
+                Colorful.Console.WriteLine("You have made a reservation for " + Global.ReservationPlayerAmount + " players for \"" + Input_ReservationEscapeRoomName +
+                    "\"", Color.LawnGreen);
+                System.Console.ReadKey();
             }
+            ClientMenu();
             
         }
         static bool Confirm()
@@ -314,7 +318,6 @@ namespace EscapeRoomApp
             if (ChoiceNumber == "1")
             {
                 Colorful.Console.WriteLine("\nReservation confirmed!", Color.LawnGreen);
-                System.Console.ReadKey();
                 return true;
             }
             if (ChoiceNumber == "2")
@@ -322,7 +325,6 @@ namespace EscapeRoomApp
                 Colorful.Console.WriteLine("\nReservation process cancelled\nTaking you back to Client Menu...", Color.Red);
                 System.Console.ReadKey();
                 System.Console.Clear();
-                ClientMenu();
                 return false;
             }
             else 
@@ -377,11 +379,6 @@ namespace EscapeRoomApp
                 "(1) ...");
             System.Console.ReadKey();
             System.Environment.Exit(1);
-
-            //TO BE ADDED:
-            //JSON integratie om naam te checken
-            //JSON systeem dat alle geplande reservaties onder de naam, vanaf de huidige datum, print in de console
-            //JSON integratie om naam uit systeem te halen voor de geselecteerde reservatie (indien er meerdere zijn)
         }
 
         static void PasswordCheck()
@@ -395,8 +392,7 @@ namespace EscapeRoomApp
                 if (PasswordInput == AdminPassword)
                 {
                     System.Console.Clear();
-                    Colorful.Console.WriteLine("Welcome Admin.", Color.LawnGreen);
-                    Attempts = 3;
+                    Attempts = 0;
                     AdminMenu();
                 }
                 else
@@ -430,7 +426,9 @@ namespace EscapeRoomApp
         static void AdminMenu()
         //Gets called when the user inputs the correct password.
         {
-            Colorful.Console.WriteLine("\nWhat do you wish to do?\n", Color.White);
+            System.Console.Clear();
+            Colorful.Console.WriteLine("Welcome Admin \n", Color.LawnGreen);
+            Colorful.Console.WriteLine("What do you wish to do?\n", Color.White);
             System.Console.WriteLine("" +
                 "(1) Edit Escape Room information \n" +
                 "(2) Check the reservations \n" +
@@ -441,6 +439,17 @@ namespace EscapeRoomApp
             {
                 Colorful.Console.WriteLine("\n", Color.White);
                 EditInfo();
+            }
+            if (AdminChoice == "2")
+            {
+                System.Console.Clear();
+                Colorful.Console.WriteLine("\nThe following reservations have been made: \n", Color.White);
+                for (int i = 0; i < Global.ReservationList.Count; i++)
+                {
+                    System.Console.WriteLine(Global.ReservationList[i]);
+                }
+                System.Console.ReadKey();
+                AdminMenu();
             }
             if (AdminChoice == "3")
             {

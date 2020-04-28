@@ -18,7 +18,7 @@ namespace EscapeRoomApp
         }
         public override string ToString()
         {
-            return ReservationName + " has made a reservation for " + ReservationPlayerAmount + " players for " + ReservationEscapeRoomName;
+            return ReservationName + " made a reservation for " + ReservationPlayerAmount + " players for " + ReservationEscapeRoomName;
         }
     }
 }
