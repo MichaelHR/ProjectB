@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using Colorful;
 using System.Drawing;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace EscapeRoomApp
 {
     public static class Global
     {
-
-        public static List<ReservationClass> ReservationList = new List<ReservationClass>();
-
         // Names for each Escape Room
         public static string EscName1 = "Clumsy Clowns";
         public static string EscName2 = "Hidden Evidence";
@@ -40,6 +39,7 @@ namespace EscapeRoomApp
     public class Program
     {
         public static int Attempts;
+        public static List<ReservationClass> ReservationList = new List<ReservationClass>();
 
         public static void Main()
         //Beginning function.
@@ -231,7 +231,7 @@ namespace EscapeRoomApp
         }
 
 
-        static void ReservationMenu()
+        public static void ReservationMenu()
         {
             string Input_ReservationEscapeRoomName = "";
             System.Console.Clear();
@@ -303,7 +303,10 @@ namespace EscapeRoomApp
             {
                 ReservationClass Reservation = new ReservationClass
                     (Input_ReservationName, Input_ReservationEscapeRoomName, Global.ReservationPlayerAmount);
-                Global.ReservationList.Add(Reservation);
+                ReservationList.Add(Reservation);
+
+                Save();
+
                 Colorful.Console.WriteLine("You have made a reservation for " + Global.ReservationPlayerAmount + " players for \"" + Input_ReservationEscapeRoomName +
                     "\"", Color.LawnGreen);
                 System.Console.ReadKey();
@@ -444,9 +447,9 @@ namespace EscapeRoomApp
             {
                 System.Console.Clear();
                 Colorful.Console.WriteLine("\nThe following reservations have been made: \n", Color.White);
-                for (int i = 0; i < Global.ReservationList.Count; i++)
+                for (int i = 0; i < ReservationList.Count; i++)
                 {
-                    System.Console.WriteLine(Global.ReservationList[i]);
+                    System.Console.WriteLine(ReservationList[i]);
                 }
                 System.Console.ReadKey();
                 AdminMenu();
@@ -680,23 +683,17 @@ namespace EscapeRoomApp
             }
         }
 
-    }
-    
-
-
-
-
-
-
-
-    /*public class Reservation
-    {
-        public string name;
-
-        public Reservation(string aName)
+        static void Save()
         {
-            //List<Reservation>
-            name = aName;
+            string jsonString;
+            jsonString = JsonConvert.SerializeObject(ReservationList, Formatting.Indented);
+            string filePath = Environment.CurrentDirectory + @"\Reservations.json";
+            File.WriteAllText(filePath, jsonString);
+
+            string result = File.ReadAllText(filePath);
+
+            List<ReservationClass> DeserializedList = JsonConvert.DeserializeObject<List<ReservationClass>>(jsonString);
         }
-    }*/
+
+    }
 }

@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace EscapeRoomApp
 {
+    [Serializable]
     public class ReservationClass
     {
-        string ReservationName { get; set; }
-        string ReservationEscapeRoomName { get; set; }
-        int ReservationPlayerAmount { get; set; }
+        public string ReservationName { get; set; }
+        public string ReservationEscapeRoomName { get; set; }
+        public int ReservationPlayerAmount { get; set; }
 
         public ReservationClass(string rn, string rrn, int rpa)
         {
