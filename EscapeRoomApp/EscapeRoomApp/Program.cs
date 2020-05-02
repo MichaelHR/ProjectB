@@ -40,10 +40,19 @@ namespace EscapeRoomApp
     {
         public static int Attempts;
         public static List<ReservationClass> ReservationList = new List<ReservationClass>();
+        public static string filePath = Environment.CurrentDirectory + @"\Reservations.json";
 
         public static void Main()
         //Beginning function.
         {
+            if (File.Exists(filePath))
+            {
+                Deserialize();
+            }
+            else if (!File.Exists(filePath))
+            {
+                Save();
+            }
             Start();
         }
 
@@ -687,13 +696,13 @@ namespace EscapeRoomApp
         {
             string jsonString;
             jsonString = JsonConvert.SerializeObject(ReservationList, Formatting.Indented);
-            string filePath = Environment.CurrentDirectory + @"\Reservations.json";
             File.WriteAllText(filePath, jsonString);
-
-            string result = File.ReadAllText(filePath);
-
-            List<ReservationClass> DeserializedList = JsonConvert.DeserializeObject<List<ReservationClass>>(jsonString);
         }
+        public static void Deserialize()
+        {
+            ReservationList = JsonConvert.DeserializeObject<List<ReservationClass>>(File.ReadAllText(filePath));
+        }
+
 
     }
 }
