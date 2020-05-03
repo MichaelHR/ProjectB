@@ -301,6 +301,16 @@ namespace EscapeRoomApp
 
             ReservationPlayerCheck();
 
+            Colorful.Console.WriteLine("\nPlease enter the date for your reservation:", Color.White);
+            Colorful.Console.WriteLine("Dates are entered as \"day-month-year\"\n", Color.Yellow);
+            Colorful.Console.Write("Enter the day of the month: ");
+            string Input_ReservationDate_Day = System.Console.ReadLine();
+            Colorful.Console.Write("Enter the month (0-12): ");
+            string Input_ReservationDate_Month = System.Console.ReadLine();
+            Colorful.Console.Write("Enter the year: ");
+            string Input_ReservationDate_Year = System.Console.ReadLine();
+            string Input_ReservationDate = Input_ReservationDate_Day + "-" + Input_ReservationDate_Month + "-" + Input_ReservationDate_Year;
+
             System.Console.Clear();
             Colorful.Console.WriteFormatted("\nEscape Room: ", Color.White);
             Colorful.Console.WriteLine(Input_ReservationEscapeRoomName, Color.Yellow);
@@ -308,10 +318,12 @@ namespace EscapeRoomApp
             Colorful.Console.WriteLine(Input_ReservationName, Color.Yellow);
             Colorful.Console.WriteFormatted("Amount of people reserved for: ", Color.White);
             Colorful.Console.WriteLine(Global.ReservationPlayerAmount, Color.Yellow);
+            Colorful.Console.WriteFormatted("Date reserved for: ", Color.White);
+            Colorful.Console.WriteLine(Input_ReservationDate, Color.Yellow);
             if (Confirm())
             {
                 ReservationClass Reservation = new ReservationClass
-                    (Input_ReservationName, Input_ReservationEscapeRoomName, Global.ReservationPlayerAmount);
+                    (Input_ReservationName, Input_ReservationEscapeRoomName, Global.ReservationPlayerAmount, Input_ReservationDate);
                 ReservationList.Add(Reservation);
 
                 Save();

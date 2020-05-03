@@ -12,12 +12,14 @@ namespace EscapeRoomApp
         public string ReservationName { get; set; }
         public string ReservationEscapeRoomName { get; set; }
         public int ReservationPlayerAmount { get; set; }
+        public string ReservationDate { get; set; }
 
-        public ReservationClass(string rn, string rrn, int rpa)
+        public ReservationClass(string rn, string rrn, int rpa, string rd)
         {
             ReservationName = rn;
             ReservationEscapeRoomName = rrn;
             ReservationPlayerAmount = rpa;
+            ReservationDate = rd;
         }
         public override string ToString()
         {
