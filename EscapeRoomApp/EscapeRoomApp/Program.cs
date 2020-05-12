@@ -7,35 +7,6 @@ using System.IO;
 
 namespace EscapeRoomApp
 {
-    public static class Global
-    {
-        // Names for each Escape Room
-        public static string EscName1 = "Clumsy Clowns";
-        public static string EscName2 = "Hidden Evidence";
-        public static string EscName3 = "Bank Job";
-        public static string EscName4 = "Up for Adoption";
-        public static string EscName5 = "Killer Clowns";
-
-        // Maximum players for each Escape Room
-        public static int EscPlayers1max = 8;
-        public static int EscPlayers2max = 5;
-        public static int EscPlayers3max = 6;
-        public static int EscPlayers4max = 7;
-        public static int EscPlayers5max = 5;
-
-        // Minimum players for each Escape Room
-        public static int EscPlayers1min = 3;
-        public static int EscPlayers2min = 2;
-        public static int EscPlayers3min = 3;
-        public static int EscPlayers4min = 3;
-        public static int EscPlayers5min = 2;
-
-        // Reservation general info
-        public static int ReservationPlayerAmount = 0;
-        public static int ReservationEscapeRoomMaxCount = 0;
-        public static int ReservationEscapeRoomMinCount = 0;
-
-    }
     public class Program
     {
         public static int Attempts;
@@ -141,8 +112,7 @@ namespace EscapeRoomApp
                     "             The participants must escape the room in order to make it to the circus show on time.\n" +
                     "Age: Children" + "\n" +
                     "Time: 60 minutes" + "\n" +
-                    "Maximum amount of players: " + Global.EscPlayers1max + "\n" +
-                    "Minimum amount of players: " + Global.EscPlayers1min + "\n" +
+                    "Amount of players: " + Global.EscPlayers1min + "-" + Global.EscPlayers1max + "\n" +
                     "Location: Wijnhaven 107, 3011 WN Rotterdam" + "\n" +
                     "\nContact information:\n" + 
                     "Phone number: 010-1234567\nEmail: escape.room@hr.nl\n");
@@ -159,8 +129,7 @@ namespace EscapeRoomApp
                     "             They must escape with the evidence the police officer is trying to hide so that he can be arrested.\n" +
                     "Age: All ages \n" +
                     "Time: 60 minutes \n" +
-                    "Maximum amount of players: " + Global.EscPlayers2max + "\n" +
-                    "Minimum amount of players: " + Global.EscPlayers2min + "\n" +
+                    "Amount of players: " + Global.EscPlayers2min + "-" + Global.EscPlayers2max + "\n" +
                     "Location: Wijnhaven 107, 3011 WN Rotterdam\n" + "\n" +
                     "Contact information:\n" +
                     "Phone number: 010-1234567 \n" +
@@ -178,8 +147,7 @@ namespace EscapeRoomApp
                     "             They must get out of the vault with all of the money before they're discovered and arrested by the police.\n" +
                     "Age: All ages \n" +
                     "Time: 60 minutes \n" +
-                    "Maximum amount of players: " + Global.EscPlayers3max + "\n" +
-                    "Minimum amount of players: " + Global.EscPlayers3min + "\n" +
+                    "Amount of players: " + Global.EscPlayers3min + "-" + Global.EscPlayers3max + "\n" +
                     "Location: Wijnhaven 107, 3011 WN Rotterdam \n" + "\n" + 
                     "Contact information:\n" +
                     "Phone number: 010-1234567 \n" +
@@ -198,8 +166,7 @@ namespace EscapeRoomApp
                     "             They must solve all of the puzzles and escape or they will be imprisoned in her room forever. \n" +
                     "Age: 16+ \n" +
                     "Time: 60 minutes \n" +
-                    "Maximum amount of players: " + Global.EscPlayers4max + "\n" +
-                    "Minimum amount of players: " + Global.EscPlayers4min + "\n" +
+                    "Amount of players: " + Global.EscPlayers4min + "-" + Global.EscPlayers4max + "\n" +
                     "Location: Wijnhaven 107, 3011 WN Rotterdam \n" + "\n" +
                     "Contact information: \n" +
                     "Phone number: 010-1234567 \n" +
@@ -217,8 +184,7 @@ namespace EscapeRoomApp
                     "             They must escape before the clowns return to finish the job. \n" +
                     "Age: 16+ \n" +
                     "Time: 60 minutes \n" +
-                    "Maximum amount of players: " + Global.EscPlayers5max + "\n" +
-                    "Minimum amount of players: " + Global.EscPlayers5min + "\n" +
+                    "Amount of players: " + Global.EscPlayers5min + "-" + Global.EscPlayers5max + "\n" +
                     "Location: Wijnhaven 107, 3011 WN Rotterdam \n" + "\n" + 
                     "Contact information: \n" +
                     "Phone number: 010-1234567 \n" +
