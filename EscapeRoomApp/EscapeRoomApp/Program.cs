@@ -30,17 +30,24 @@ namespace EscapeRoomApp
         static void Start()
         // Gets called at the start of the program.
         {
-            Colorful.Console.WriteLine("Welcome to the escape room application.\n", Color.White);
-            Colorful.Console.WriteLine("What type of user are you?", Color.White);
-            System.Console.WriteLine("(1) Client");
-            System.Console.WriteLine("(2) Admin");
+            System.Console.Clear();
+            Colorful.Console.WriteLine("Welcome to the Escape Room Application.\n", Color.LawnGreen);
+            Colorful.Console.WriteLine("What would you look to do?", Color.White);
+            System.Console.WriteLine("(1) View our Escape Rooms\n(2) Cancel a reservation\n(3) Log-in as Admin");
+
             string UserType = System.Console.ReadLine();
 
             if (UserType == "1")
             {
-                ClientMenu();
+                System.Console.Clear();
+                Colorful.Console.WriteLine("Below you will find a list of our Escape Rooms.\n", Color.White);
+                EscapeRoomList();
             }
             else if (UserType == "2")
+            {
+                CancelReservationMenu();
+            }
+            else if (UserType == "3")
             {
                 System.Console.Clear();
                 PasswordCheck();
@@ -54,7 +61,7 @@ namespace EscapeRoomApp
         }
 
 
-        static void ClientMenu()
+        /*static void ClientMenu()
         // Gets called when the user chooses the 'client' option.
         {
             System.Console.Clear();
@@ -62,39 +69,13 @@ namespace EscapeRoomApp
             Colorful.Console.WriteLine("What would you like to do?", Color.White);
             System.Console.WriteLine("(1) Discover our Escape Rooms\n(2) Reserve an Escape Room\n(3) Cancel a reservation\n(4) Return to Start Menu");
             string ClientAction = System.Console.ReadLine();
-            if (ClientAction == "1")
-            {
-                System.Console.Clear();
-                Colorful.Console.WriteLine("Below you will find a list of our Escape Rooms.\n", Color.White);
-                EscapeRoomList();
-            }
-            else if (ClientAction == "2")
-            {
-                ReservationMenu();
-            }
-            else if (ClientAction == "3")
-            {
-                CancelReservationMenu();
-
-            }
-            else if (ClientAction == "4")
-            {
-                System.Console.Clear();
-                Start();
-            }
-            else
-            {
-                System.Console.Clear();
-                Colorful.Console.WriteLine("Invalid input!\n", Color.Red);
-                ClientMenu();
-            }
-        }
+        }*/
 
 
         static void EscapeRoomList()
         //Gets called when the user chooses the option to check out the escape rooms.
         {
-            Colorful.Console.WriteLine("Which Escape Room would you like to check out?", Color.White);
+            Colorful.Console.WriteLine("Which Escape Room would you like to check out?\n", Color.White);
             System.Console.WriteLine(
                "(1) " + Global.EscName1 + "\n" +
                "(2) " + Global.EscName2 + "\n" +
@@ -104,22 +85,32 @@ namespace EscapeRoomApp
                "(6) Return to Menu");
             string EscapeRoomNumber = System.Console.ReadLine();
             System.Console.Clear();
+            string Input = "";
             if (EscapeRoomNumber == "1")
             {
                 System.Console.WriteLine(
-                    "Name: " + Global.EscName1 + "\n" + 
+                    "Name: " + Global.EscName1 + "\n" +
                     "Description: The participants have accidentally been locked in a room by clumsy clowns.\n" +
                     "             The participants must escape the room in order to make it to the circus show on time.\n" +
                     "Age: Children" + "\n" +
                     "Time: 60 minutes" + "\n" +
                     "Amount of players: " + Global.EscPlayers1min + "-" + Global.EscPlayers1max + "\n" +
                     "Location: Wijnhaven 107, 3011 WN Rotterdam" + "\n" +
-                    "\nContact information:\n" + 
+                    "\nContact information:\n" +
                     "Phone number: 010-1234567\nEmail: escape.room@hr.nl\n");
-                Colorful.Console.WriteLine("Press any key to continue.", Color.White);
-                System.Console.ReadKey();
-                System.Console.Clear();
-                EscapeRoomList();
+                Colorful.Console.WriteLine("\nWhat would you like to do?", Color.White);
+                System.Console.WriteLine("(1) Place a reservation for this Escape Room \n(2) Return");
+                Input = System.Console.ReadLine();
+                if (Input == "1")
+                {
+                    Global.ReservationEscapeRoomNumber = EscapeRoomNumber;
+                    ReservationMenu();
+                }
+                else
+                {
+                    System.Console.Clear();
+                    EscapeRoomList();
+                }
             }
             else if (EscapeRoomNumber == "2")
             {
@@ -134,10 +125,19 @@ namespace EscapeRoomApp
                     "Contact information:\n" +
                     "Phone number: 010-1234567 \n" +
                     "Email: escape.room@hr.nl\n");
-                Colorful.Console.WriteLine("Press any key to continue.", Color.White);
-                System.Console.ReadKey();
-                System.Console.Clear();
-                EscapeRoomList();
+                Colorful.Console.WriteLine("\nWhat would you like to do?", Color.White);
+                System.Console.WriteLine("(1) Place a reservation for this Escape Room \n(2) Return");
+                Input = System.Console.ReadLine();
+                if (Input == "1")
+                {
+                    Global.ReservationEscapeRoomNumber = EscapeRoomNumber;
+                    ReservationMenu();
+                }
+                else
+                {
+                    System.Console.Clear();
+                    EscapeRoomList();
+                }
             }
             else if (EscapeRoomNumber == "3")
             {
@@ -148,14 +148,23 @@ namespace EscapeRoomApp
                     "Age: All ages \n" +
                     "Time: 60 minutes \n" +
                     "Amount of players: " + Global.EscPlayers3min + "-" + Global.EscPlayers3max + "\n" +
-                    "Location: Wijnhaven 107, 3011 WN Rotterdam \n" + "\n" + 
+                    "Location: Wijnhaven 107, 3011 WN Rotterdam \n" + "\n" +
                     "Contact information:\n" +
                     "Phone number: 010-1234567 \n" +
                     "Email: escape.room@hr.nl\n");
-                Colorful.Console.WriteLine("Press any key to continue.", Color.White);
-                System.Console.ReadKey();
-                System.Console.Clear();
-                EscapeRoomList();
+                Colorful.Console.WriteLine("\nWhat would you like to do?", Color.White);
+                System.Console.WriteLine("(1) Place a reservation for this Escape Room \n(2) Return");
+                Input = System.Console.ReadLine();
+                if (Input == "1")
+                {
+                    Global.ReservationEscapeRoomNumber = EscapeRoomNumber;
+                    ReservationMenu();
+                }
+                else
+                {
+                    System.Console.Clear();
+                    EscapeRoomList();
+                }
             }
             else if (EscapeRoomNumber == "4")
             {
@@ -171,10 +180,19 @@ namespace EscapeRoomApp
                     "Contact information: \n" +
                     "Phone number: 010-1234567 \n" +
                     "Email: escape.room@hr.nl\n");
-                Colorful.Console.WriteLine("Press any key to continue.", Color.White);
-                System.Console.ReadKey();
-                System.Console.Clear();
-                EscapeRoomList();
+                Colorful.Console.WriteLine("\nWhat would you like to do?", Color.White);
+                System.Console.WriteLine("(1) Place a reservation for this Escape Room \n(2) Return");
+                Input = System.Console.ReadLine();
+                if (Input == "1")
+                {
+                    Global.ReservationEscapeRoomNumber = EscapeRoomNumber;
+                    ReservationMenu();
+                }
+                else
+                {
+                    System.Console.Clear();
+                    EscapeRoomList();
+                }
             }
             else if (EscapeRoomNumber == "5")
             {
@@ -185,22 +203,31 @@ namespace EscapeRoomApp
                     "Age: 16+ \n" +
                     "Time: 60 minutes \n" +
                     "Amount of players: " + Global.EscPlayers5min + "-" + Global.EscPlayers5max + "\n" +
-                    "Location: Wijnhaven 107, 3011 WN Rotterdam \n" + "\n" + 
+                    "Location: Wijnhaven 107, 3011 WN Rotterdam \n" + "\n" +
                     "Contact information: \n" +
                     "Phone number: 010-1234567 \n" +
                     "Email: escape.room@hr.nl\n");
-                Colorful.Console.WriteLine("Press any key to continue.", Color.White);
-                System.Console.ReadKey();
-                System.Console.Clear();
-                EscapeRoomList();
+                Colorful.Console.WriteLine("\nWhat would you like to do?", Color.White);
+                System.Console.WriteLine("(1) Place a reservation for this Escape Room \n(2) Return");
+                Input = System.Console.ReadLine();
+                if (Input == "1")
+                {
+                    Global.ReservationEscapeRoomNumber = EscapeRoomNumber;
+                    ReservationMenu();
+                }
+                else
+                {
+                    System.Console.Clear();
+                    EscapeRoomList();
+                }
             }
             else if (EscapeRoomNumber == "6")
             {
-                ClientMenu();
+                Start();
             }
             else
             {
-                Colorful.Console.WriteLine("Invalid input!\n", Color.Red);
+                Colorful.Console.WriteLine("Invalid input!", Color.Red);
                 EscapeRoomList();
             }
         }
@@ -208,52 +235,41 @@ namespace EscapeRoomApp
 
         public static void ReservationMenu()
         {
-            string Input_ReservationEscapeRoomName = "";
+            string Input_ReservationEscapeRoomName = Global.ReservationEscapeRoomNumber;
             System.Console.Clear();
-            Colorful.Console.WriteLine("\nWhat Escape Room would you like to make a reservation for?", Color.White);
-            System.Console.WriteLine("(1) " + Global.EscName1 + "\n(2) " + Global.EscName2 + "\n(3) " + Global.EscName3 + "\n(4) " + Global.EscName4 + "\n(5) " + Global.EscName5 + "\n(6) Return to Menu");
-            string ReservationEscapeRoomNumber = System.Console.ReadLine();
-            if (ReservationEscapeRoomNumber == "1")
+            if (Global.ReservationEscapeRoomNumber == "1")
             {
                 Input_ReservationEscapeRoomName = Global.EscName1;
                 Global.ReservationEscapeRoomMaxCount = Global.EscPlayers1max;
                 Global.ReservationEscapeRoomMinCount = Global.EscPlayers1min;
             }
-            else if (ReservationEscapeRoomNumber == "2")
+            else if (Global.ReservationEscapeRoomNumber == "2")
             {
                 Input_ReservationEscapeRoomName = Global.EscName2;
                 Global.ReservationEscapeRoomMaxCount = Global.EscPlayers2max;
                 Global.ReservationEscapeRoomMinCount = Global.EscPlayers2min;
             }
-            else if (ReservationEscapeRoomNumber == "3")
+            else if (Global.ReservationEscapeRoomNumber == "3")
             {
                 Input_ReservationEscapeRoomName = Global.EscName3;
                 Global.ReservationEscapeRoomMaxCount = Global.EscPlayers3max;
                 Global.ReservationEscapeRoomMinCount = Global.EscPlayers3min;
             }
-            else if (ReservationEscapeRoomNumber == "4")
+            else if (Global.ReservationEscapeRoomNumber == "4")
             {
                 Input_ReservationEscapeRoomName = Global.EscName4;
                 Global.ReservationEscapeRoomMaxCount = Global.EscPlayers4max;
                 Global.ReservationEscapeRoomMinCount = Global.EscPlayers4min;
             }
-            else if (ReservationEscapeRoomNumber == "5")
+            else if (Global.ReservationEscapeRoomNumber == "5")
             {
                 Input_ReservationEscapeRoomName = Global.EscName5;
                 Global.ReservationEscapeRoomMaxCount = Global.EscPlayers5max;
                 Global.ReservationEscapeRoomMinCount = Global.EscPlayers5min;
             }
-            else if (ReservationEscapeRoomNumber == "6")
+            else if (Global.ReservationEscapeRoomNumber == "6")
             {
-                ClientMenu();
-            }
-            else
-            {
-                System.Console.Clear();
-                Colorful.Console.WriteLine("Invalid input!", Color.Red);
-                System.Console.ReadKey();
-                ReservationMenu();
-
+                Start();
             }
 
             System.Console.Clear();
@@ -298,7 +314,7 @@ namespace EscapeRoomApp
                     "\"", Color.LawnGreen);
                 System.Console.ReadKey();
             }
-            ClientMenu();
+            Start();
             
         }
         static bool Confirm()
