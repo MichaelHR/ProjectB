@@ -32,5 +32,8 @@ namespace EscapeRoomApp
         public static int ReservationPlayerAmount = 0;
         public static int ReservationEscapeRoomMaxCount = 0;
         public static int ReservationEscapeRoomMinCount = 0;
+
+        //Admin Password
+        public static string AdminPassword = "Admin";
     }
 }

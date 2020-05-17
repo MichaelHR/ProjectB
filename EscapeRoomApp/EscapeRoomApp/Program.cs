@@ -12,6 +12,7 @@ namespace EscapeRoomApp
         public static int Attempts;
         public static List<ReservationClass> ReservationList = new List<ReservationClass>();
         public static string filePath = Environment.CurrentDirectory + @"\Reservations.json";
+        public static string filePath2 = Environment.CurrentDirectory + @"\ChangePassword.json";
 
         public static void Main()
         //Beginning function.
@@ -608,7 +609,8 @@ namespace EscapeRoomApp
                 System.Console.WriteLine(
                     "(1) Escape Room Name \n" +
                     "(2) Maximum players allowed \n" +
-                    "(3) Minimum players allowed");
+                    "(3) Minimum players allowed \n" +
+                    "(4) Change the admin password");
                 string EditNumber = System.Console.ReadLine();
 
                 if (EditNumber == "1")
@@ -631,6 +633,10 @@ namespace EscapeRoomApp
                         else if (EditNumber == "3")
                         {
                             Global.EscPlayers4min = NewNumber;
+                        }
+                        else if (EditNumber == "4")
+                        {
+                            ChangePassword();
                         }
                     }
                     else
@@ -685,6 +691,22 @@ namespace EscapeRoomApp
                 AdminMenu();
             }
         }
+
+
+        static void ChangePassword()
+        //Gets called when the admin chooses option 4 in AdminMenu
+        {
+            string jsonString = Global.AdminPassword;
+            jsonString = JsonConvert.SerializeObject(jsonString);
+            File.WriteAllText(filePath2, jsonString);
+            Colorful.Console.WriteLine("Please enter the current password:", Color.White);
+            string CurrentPasswordCheck = System.Console.ReadLine();
+            if (CurrentPasswordCheck == Global.AdminPassword)
+            {
+
+            }
+        }
+
 
         static void Save()
         {
