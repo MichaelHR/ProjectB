@@ -566,7 +566,9 @@ namespace EscapeRoomApp
                 System.Console.WriteLine(
                     "(1) Escape Room Name \n" +
                     "(2) Maximum players allowed \n" +
-                    "(3) Minimum players allowed");
+                    "(3) Minimum players allowed \n" +
+                    "(4) Opening time \n" +
+                    "(5) Closing time");
                 string EditNumber = System.Console.ReadLine();
 
                 if (EditNumber == "1")
@@ -597,6 +599,11 @@ namespace EscapeRoomApp
                     }
                     EditInfo();
                 }
+                if (EditNumber == "4" || EditNumber == "5")
+                {
+                    System.Console.WriteLine("Enter the new time:");
+                    var readline = System.Console.ReadLine();
+                }
             }
             if (EscapeRoomNumber == "2")
             {
@@ -605,7 +612,9 @@ namespace EscapeRoomApp
                 System.Console.WriteLine(
                     "(1) Escape Room Name \n" +
                     "(2) Maximum players allowed \n" +
-                    "(3) Minimum players allowed");
+                    "(3) Minimum players allowed \n" +
+                    "(4) Opening time \n" +
+                    "(5) Closing time");
                 string EditNumber = System.Console.ReadLine();
 
                 if (EditNumber == "1")
@@ -630,6 +639,11 @@ namespace EscapeRoomApp
                             Global.EscPlayers2min = NewNumber;
                         }
                     }
+                    if (EditNumber == "4" || EditNumber == "5")
+                    {
+                        System.Console.WriteLine("Enter the new time:");
+                        var readline2 = System.Console.ReadLine();
+                    }
                     else
                     {
                         Colorful.Console.WriteLine("Input is not a valid number", Color.Red);
@@ -644,7 +658,9 @@ namespace EscapeRoomApp
                 System.Console.WriteLine(
                     "(1) Escape Room Name \n" +
                     "(2) Maximum players allowed \n" +
-                    "(3) Minimum players allowed");
+                    "(3) Minimum players allowed \n" +
+                    "(4) Opening time\n" +
+                    "(5) Closing time");
                 string EditNumber = System.Console.ReadLine();
 
                 if (EditNumber == "1")
@@ -669,6 +685,11 @@ namespace EscapeRoomApp
                             Global.EscPlayers3min = NewNumber;
                         }
                     }
+                    if (EditNumber == "4" || EditNumber == "5")
+                    {
+                        System.Console.WriteLine("Enter the new time:");
+                        var readline3 = System.Console.ReadLine();
+                    }
                     else
                     {
                         Colorful.Console.WriteLine("Input is not a valid number", Color.Red);
@@ -684,7 +705,8 @@ namespace EscapeRoomApp
                     "(1) Escape Room Name \n" +
                     "(2) Maximum players allowed \n" +
                     "(3) Minimum players allowed \n" +
-                    "(4) Change the admin password");
+                    "(4) Opening time \n" +
+                    "(5) Closing time");
                 string EditNumber = System.Console.ReadLine();
 
                 if (EditNumber == "1")
@@ -713,6 +735,11 @@ namespace EscapeRoomApp
                             ChangePassword();
                         }
                     }
+                    if (EditNumber == "4" || EditNumber == "5")
+                    {
+                        System.Console.WriteLine("Enter the new time:");
+                        var readline4 = System.Console.ReadLine();
+                    }
                     else
                     {
                         Colorful.Console.WriteLine("Input is not a valid number", Color.Red);
@@ -727,7 +754,9 @@ namespace EscapeRoomApp
                 System.Console.WriteLine(
                     "(1) Escape Room Name \n" +
                     "(2) Maximum players allowed \n" +
-                    "(3) Minimum players allowed");
+                    "(3) Minimum players allowed \n" +
+                    "(4) Opening time \n" +
+                    "(5) Closing time");
                 string EditNumber = System.Console.ReadLine();
 
                 if (EditNumber == "1")
@@ -751,6 +780,11 @@ namespace EscapeRoomApp
                         {
                             Global.EscPlayers5min = NewNumber;
                         }
+                    }
+                    if (EditNumber == "4" || EditNumber == "5")
+                    {
+                        System.Console.WriteLine("Enter the new time:");
+                        var readline5 = System.Console.ReadLine();
                     }
                     else
                     {
