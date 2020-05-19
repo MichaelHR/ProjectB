@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Colorful;
 using System.Drawing;
 using Newtonsoft.Json;
 using System.IO;
+using System.Globalization;
 
 namespace EscapeRoomApp
 {
@@ -320,7 +321,7 @@ namespace EscapeRoomApp
                 System.Console.ReadKey();
             }
             Start();
-            
+
         }
         static bool Confirm()
         {
@@ -338,15 +339,15 @@ namespace EscapeRoomApp
                 System.Console.Clear();
                 return false;
             }
-            else 
-            { 
-            System.Console.Clear();
-            Colorful.Console.WriteLine("Invalid input!", Color.Red);
-            System.Console.ReadKey();
-            return Confirm();
+            else
+            {
+                System.Console.Clear();
+                Colorful.Console.WriteLine("Invalid input!", Color.Red);
+                System.Console.ReadKey();
+                return Confirm();
             }
         }
-        
+
 
         static void ReservationPlayerCheck()
         // Gets called to handle input for the amount of players on a reservation
@@ -482,10 +483,10 @@ namespace EscapeRoomApp
             Colorful.Console.WriteLine("\nWhich escape room would you like to edit? \n", Color.White);
             System.Console.WriteLine("" +
                 "(1) " + Global.EscName1 + "\n" +
-                "(2) "+ Global.EscName2 + "\n" +
+                "(2) " + Global.EscName2 + "\n" +
                 "(3) " + Global.EscName3 + "\n" +
                 "(4) " + Global.EscName4 + "\n" +
-                "(5) "+ Global.EscName5 + "\n" +
+                "(5) " + Global.EscName5 + "\n" +
                 "(6) Return");
             string EscapeRoomNumber = System.Console.ReadLine();
 
@@ -503,7 +504,7 @@ namespace EscapeRoomApp
                 {
                     System.Console.WriteLine("\nType the new name here: ");
                     string NewName = System.Console.ReadLine();
-                    Global.EscName2 = NewName;
+                    Global.EscName1 = NewName;
                     EditInfo();
                 }
                 if (EditNumber == "2" || EditNumber == "3")
@@ -581,7 +582,7 @@ namespace EscapeRoomApp
                 {
                     System.Console.WriteLine("\nType the new name here: ");
                     string NewName = System.Console.ReadLine();
-                    Global.EscName2 = NewName;
+                    Global.EscName3 = NewName;
                     EditInfo();
                 }
                 if (EditNumber == "2" || EditNumber == "3")
@@ -620,7 +621,7 @@ namespace EscapeRoomApp
                 {
                     System.Console.WriteLine("\nType the new name here: ");
                     string NewName = System.Console.ReadLine();
-                    Global.EscName2 = NewName;
+                    Global.EscName4 = NewName;
                     EditInfo();
                 }
                 if (EditNumber == "2" || EditNumber == "3")
@@ -659,7 +660,7 @@ namespace EscapeRoomApp
                 {
                     System.Console.WriteLine("\nType the new name here: ");
                     string NewName = System.Console.ReadLine();
-                    Global.EscName2 = NewName;
+                    Global.EscName5 = NewName;
                     EditInfo();
                 }
                 if (EditNumber == "2" || EditNumber == "3")
@@ -701,7 +702,5 @@ namespace EscapeRoomApp
         {
             ReservationList = JsonConvert.DeserializeObject<List<ReservationClass>>(File.ReadAllText(filePath));
         }
-
-
     }
 }
