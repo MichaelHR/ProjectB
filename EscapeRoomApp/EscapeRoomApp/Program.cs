@@ -375,18 +375,79 @@ namespace EscapeRoomApp
 
         }
 
-        static void CancelReservationMenu()
+        public static void CancelReservationMenu()
         {
+            int count = 0;
             System.Console.Clear();
-            Colorful.Console.WriteLine("\nPlease enter the name you have placed your reservation under: ", Color.White);
+            Colorful.Console.WriteLine("Please enter the name you have placed your reservation under: ", Color.White);
             string CancellationName = System.Console.ReadLine();
-            Colorful.Console.WriteFormatted("\nThe following reservations have been made under the name: ", Color.White);
-            Colorful.Console.WriteLine(CancellationName, Color.Yellow);
-            Colorful.Console.WriteLine(
-                "(1) ...");
-            System.Console.ReadKey();
-            System.Environment.Exit(1);
+            foreach (var n in ReservationList)
+            {
+                if (n.ReservationName == CancellationName)
+                {
+                    System.Console.Clear();
+                    Colorful.Console.WriteFormatted("The following reservations have been made under the name ", Color.White);
+                    Colorful.Console.WriteFormatted(CancellationName, Color.Yellow);
+                    Colorful.Console.WriteLine(":", Color.White);
+                    System.Console.WriteLine(n.ReservationName + " made a reservation for " + n.ReservationPlayerAmount + " players for " + n.ReservationEscapeRoomName + " for date of " + n.ReservationDate + "\n");
+                    count++;
+                }
+            }
+            if (count == 0)
+            {
+                System.Console.Clear();
+                Colorful.Console.WriteFormatted("Sorry, no reservation has been found under the name ", Color.White);
+                Colorful.Console.WriteLine(CancellationName, Color.Yellow);
+                System.Console.ReadKey();
+                Start();
+            }
+            else if (count > 0)
+            {
+                if (ConfirmCancellation())
+                {
+                    foreach (var n in ReservationList)
+                    {
+                        if (n.ReservationName == CancellationName)
+                        {
+                            n.ReservationName = null;
+                            n.ReservationEscapeRoomName = null;
+                            n.ReservationPlayerAmount = 0;
+                            n.ReservationDate = null;
+                            Save();
+                            Start();
+                        }
+                    }
+                }
+            }
         }
+
+
+        static bool ConfirmCancellation()
+        {
+            Colorful.Console.WriteLine("Are you sure you want to delete your reservation?", Color.White);
+            System.Console.WriteLine("(1) Confirm\n(2) Cancel");
+            string confirm = System.Console.ReadLine();
+            if (confirm == "1")
+            {
+                System.Console.Clear();
+                Colorful.Console.WriteLine("Reservation cancelled", Color.White);
+                System.Console.ReadKey();
+                return true;
+            }
+            else if (confirm == "2")
+            {
+                System.Console.Clear();
+                Colorful.Console.WriteLine("Cancellation aborted, returning to home menu", Color.White);
+                System.Console.ReadKey();
+                return false;
+            }
+            else
+            {
+                Colorful.Console.WriteLine("Invalid input!", Color.Red);
+                return ConfirmCancellation();
+            }
+        }
+
 
         static void PasswordCheck()
         // Gets called when the user chooses the 'admin' option.
@@ -450,10 +511,13 @@ namespace EscapeRoomApp
             if (AdminChoice == "2")
             {
                 System.Console.Clear();
-                Colorful.Console.WriteLine("\nThe following reservations have been made: \n", Color.White);
-                for (int i = 0; i < ReservationList.Count; i++)
+                Colorful.Console.WriteLine("The following reservations have been made: \n", Color.White);
+                foreach (var n in ReservationList)
                 {
-                    System.Console.WriteLine(ReservationList[i]);
+                    if (n.ReservationName != null)
+                    {
+                        System.Console.WriteLine(n.ReservationName + " made a reservation for " + n.ReservationPlayerAmount + " players for " + n.ReservationEscapeRoomName + " for date of " + n.ReservationDate);
+                    }
                 }
                 System.Console.ReadKey();
                 AdminMenu();
