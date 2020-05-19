@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Colorful;
 using System.Drawing;
 using Newtonsoft.Json;
 using System.IO;
+using System.Globalization;
 
 namespace EscapeRoomApp
 {
@@ -96,6 +97,7 @@ namespace EscapeRoomApp
                     "Age: Children" + "\n" +
                     "Time: 60 minutes" + "\n" +
                     "Amount of players: " + Global.EscPlayers1min + "-" + Global.EscPlayers1max + "\n" +
+                    "Open from: " + Global.Esc1_OpeningTime.ToString("HH:mm") + " - " + Global.Esc1_ClosingTime.ToString("HH:mm") + "\n" +
                     "Location: Wijnhaven 107, 3011 WN Rotterdam" + "\n" +
                     "\nContact information:\n" +
                     "Phone number: 010-1234567\nEmail: escape.room@hr.nl\n");
@@ -122,6 +124,7 @@ namespace EscapeRoomApp
                     "Age: All ages \n" +
                     "Time: 60 minutes \n" +
                     "Amount of players: " + Global.EscPlayers2min + "-" + Global.EscPlayers2max + "\n" +
+                    "Open from: " + Global.Esc2_OpeningTime.ToString("HH:mm") + " - " + Global.Esc2_ClosingTime.ToString("HH:mm") + "\n" +
                     "Location: Wijnhaven 107, 3011 WN Rotterdam\n" + "\n" +
                     "Contact information:\n" +
                     "Phone number: 010-1234567 \n" +
@@ -149,6 +152,7 @@ namespace EscapeRoomApp
                     "Age: All ages \n" +
                     "Time: 60 minutes \n" +
                     "Amount of players: " + Global.EscPlayers3min + "-" + Global.EscPlayers3max + "\n" +
+                    "Open from: " + Global.Esc3_OpeningTime.ToString("HH:mm") + " - " + Global.Esc3_ClosingTime.ToString("HH:mm") + "\n" +
                     "Location: Wijnhaven 107, 3011 WN Rotterdam \n" + "\n" +
                     "Contact information:\n" +
                     "Phone number: 010-1234567 \n" +
@@ -177,6 +181,7 @@ namespace EscapeRoomApp
                     "Age: 16+ \n" +
                     "Time: 60 minutes \n" +
                     "Amount of players: " + Global.EscPlayers4min + "-" + Global.EscPlayers4max + "\n" +
+                    "Open from: " + Global.Esc4_OpeningTime.ToString("HH:mm") + " - " + Global.Esc4_ClosingTime.ToString("HH:mm") + "\n" +
                     "Location: Wijnhaven 107, 3011 WN Rotterdam \n" + "\n" +
                     "Contact information: \n" +
                     "Phone number: 010-1234567 \n" +
@@ -204,6 +209,7 @@ namespace EscapeRoomApp
                     "Age: 16+ \n" +
                     "Time: 60 minutes \n" +
                     "Amount of players: " + Global.EscPlayers5min + "-" + Global.EscPlayers5max + "\n" +
+                    "Open from: " + Global.Esc5_OpeningTime.ToString("HH:mm") + " - " + Global.Esc5_ClosingTime.ToString("HH:mm") + "\n" +
                     "Location: Wijnhaven 107, 3011 WN Rotterdam \n" + "\n" +
                     "Contact information: \n" +
                     "Phone number: 010-1234567 \n" +
@@ -316,7 +322,7 @@ namespace EscapeRoomApp
                 System.Console.ReadKey();
             }
             Start();
-            
+
         }
         static bool Confirm()
         {
@@ -334,15 +340,15 @@ namespace EscapeRoomApp
                 System.Console.Clear();
                 return false;
             }
-            else 
-            { 
-            System.Console.Clear();
-            Colorful.Console.WriteLine("Invalid input!", Color.Red);
-            System.Console.ReadKey();
-            return Confirm();
+            else
+            {
+                System.Console.Clear();
+                Colorful.Console.WriteLine("Invalid input!", Color.Red);
+                System.Console.ReadKey();
+                return Confirm();
             }
         }
-        
+
 
         static void ReservationPlayerCheck()
         // Gets called to handle input for the amount of players on a reservation
@@ -542,10 +548,10 @@ namespace EscapeRoomApp
             Colorful.Console.WriteLine("\nWhich escape room would you like to edit? \n", Color.White);
             System.Console.WriteLine("" +
                 "(1) " + Global.EscName1 + "\n" +
-                "(2) "+ Global.EscName2 + "\n" +
+                "(2) " + Global.EscName2 + "\n" +
                 "(3) " + Global.EscName3 + "\n" +
                 "(4) " + Global.EscName4 + "\n" +
-                "(5) "+ Global.EscName5 + "\n" +
+                "(5) " + Global.EscName5 + "\n" +
                 "(6) Return");
             string EscapeRoomNumber = System.Console.ReadLine();
 
@@ -563,7 +569,7 @@ namespace EscapeRoomApp
                 {
                     System.Console.WriteLine("\nType the new name here: ");
                     string NewName = System.Console.ReadLine();
-                    Global.EscName2 = NewName;
+                    Global.EscName1 = NewName;
                     EditInfo();
                 }
                 if (EditNumber == "2" || EditNumber == "3")
@@ -641,7 +647,7 @@ namespace EscapeRoomApp
                 {
                     System.Console.WriteLine("\nType the new name here: ");
                     string NewName = System.Console.ReadLine();
-                    Global.EscName2 = NewName;
+                    Global.EscName3 = NewName;
                     EditInfo();
                 }
                 if (EditNumber == "2" || EditNumber == "3")
@@ -681,7 +687,7 @@ namespace EscapeRoomApp
                 {
                     System.Console.WriteLine("\nType the new name here: ");
                     string NewName = System.Console.ReadLine();
-                    Global.EscName2 = NewName;
+                    Global.EscName4 = NewName;
                     EditInfo();
                 }
                 if (EditNumber == "2" || EditNumber == "3")
@@ -724,7 +730,7 @@ namespace EscapeRoomApp
                 {
                     System.Console.WriteLine("\nType the new name here: ");
                     string NewName = System.Console.ReadLine();
-                    Global.EscName2 = NewName;
+                    Global.EscName5 = NewName;
                     EditInfo();
                 }
                 if (EditNumber == "2" || EditNumber == "3")
@@ -782,7 +788,5 @@ namespace EscapeRoomApp
         {
             ReservationList = JsonConvert.DeserializeObject<List<ReservationClass>>(File.ReadAllText(filePath));
         }
-
-
     }
 }
