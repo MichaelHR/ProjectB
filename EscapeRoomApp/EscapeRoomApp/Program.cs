@@ -35,7 +35,7 @@ namespace EscapeRoomApp
             System.Console.Clear();
             Colorful.Console.WriteLine("Welcome to the Escape Room Application.\n", Color.LawnGreen);
             Colorful.Console.WriteLine("What would you look to do?", Color.White);
-            System.Console.WriteLine("(1) View our Escape Rooms\n(2) Cancel a reservation\n(3) Log-in as Admin");
+            System.Console.WriteLine("(1) View our Escape Rooms\n(2) Cancel a reservation\n(3) Log-in as Admin\n(4) Exit");
 
             string UserType = System.Console.ReadLine();
 
@@ -53,6 +53,10 @@ namespace EscapeRoomApp
             {
                 System.Console.Clear();
                 PasswordCheck();
+            }
+            else if (UserType == "4")
+            {
+                System.Environment.Exit(0);
             }
             else
             {
