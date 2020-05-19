@@ -10,9 +10,8 @@ namespace Calendar
         static int[,] calendar = new int[6, 7];
         private static DateTime date;
 
-        private static void Main2(string[] args)
+        private static void Main(string[] args)
         {
-
             date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);//gives you a datetime object for the first day of the month
             DrawHeader();
             FillCalendar();
@@ -25,7 +24,7 @@ namespace Calendar
             Console.Write("\n\n");
             //gives you the month and year at the top of the calendar
             Console.WriteLine(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month) + " " + DateTime.Now.Year);
-            Console.WriteLine("Mo Tu We Th Fr Sa Su");
+            Console.WriteLine("Ma Di Wo Do Vr Za Zo");
         }
 
         static void FillCalendar()
