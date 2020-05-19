@@ -95,6 +95,7 @@ namespace EscapeRoomApp
                     "Age: Children" + "\n" +
                     "Time: 60 minutes" + "\n" +
                     "Amount of players: " + Global.EscPlayers1min + "-" + Global.EscPlayers1max + "\n" +
+                    "Open from: " + Global.Esc1_OpeningTime.ToString("HH:mm") + " - " + Global.Esc1_ClosingTime.ToString("HH:mm") + "\n" +
                     "Location: Wijnhaven 107, 3011 WN Rotterdam" + "\n" +
                     "\nContact information:\n" +
                     "Phone number: 010-1234567\nEmail: escape.room@hr.nl\n");
@@ -121,6 +122,7 @@ namespace EscapeRoomApp
                     "Age: All ages \n" +
                     "Time: 60 minutes \n" +
                     "Amount of players: " + Global.EscPlayers2min + "-" + Global.EscPlayers2max + "\n" +
+                    "Open from: " + Global.Esc2_OpeningTime.ToString("HH:mm") + " - " + Global.Esc2_ClosingTime.ToString("HH:mm") + "\n" +
                     "Location: Wijnhaven 107, 3011 WN Rotterdam\n" + "\n" +
                     "Contact information:\n" +
                     "Phone number: 010-1234567 \n" +
@@ -148,6 +150,7 @@ namespace EscapeRoomApp
                     "Age: All ages \n" +
                     "Time: 60 minutes \n" +
                     "Amount of players: " + Global.EscPlayers3min + "-" + Global.EscPlayers3max + "\n" +
+                    "Open from: " + Global.Esc3_OpeningTime.ToString("HH:mm") + " - " + Global.Esc3_ClosingTime.ToString("HH:mm") + "\n" +
                     "Location: Wijnhaven 107, 3011 WN Rotterdam \n" + "\n" +
                     "Contact information:\n" +
                     "Phone number: 010-1234567 \n" +
@@ -176,6 +179,7 @@ namespace EscapeRoomApp
                     "Age: 16+ \n" +
                     "Time: 60 minutes \n" +
                     "Amount of players: " + Global.EscPlayers4min + "-" + Global.EscPlayers4max + "\n" +
+                    "Open from: " + Global.Esc4_OpeningTime.ToString("HH:mm") + " - " + Global.Esc4_ClosingTime.ToString("HH:mm") + "\n" +
                     "Location: Wijnhaven 107, 3011 WN Rotterdam \n" + "\n" +
                     "Contact information: \n" +
                     "Phone number: 010-1234567 \n" +
@@ -203,6 +207,7 @@ namespace EscapeRoomApp
                     "Age: 16+ \n" +
                     "Time: 60 minutes \n" +
                     "Amount of players: " + Global.EscPlayers5min + "-" + Global.EscPlayers5max + "\n" +
+                    "Open from: " + Global.Esc5_OpeningTime.ToString("HH:mm") + " - " + Global.Esc5_ClosingTime.ToString("HH:mm") + "\n" +
                     "Location: Wijnhaven 107, 3011 WN Rotterdam \n" + "\n" +
                     "Contact information: \n" +
                     "Phone number: 010-1234567 \n" +
