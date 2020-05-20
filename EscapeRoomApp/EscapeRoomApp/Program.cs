@@ -13,6 +13,7 @@ namespace EscapeRoomApp
         public static int Attempts;
         public static List<ReservationClass> ReservationList = new List<ReservationClass>();
         public static string filePath = Environment.CurrentDirectory + @"\Reservations.json";
+        public static string filePath2 = Environment.CurrentDirectory + @"\ChangePassword.json";
 
         public static void Main()
         //Beginning function.
@@ -34,7 +35,7 @@ namespace EscapeRoomApp
             System.Console.Clear();
             Colorful.Console.WriteLine("Welcome to the Escape Room Application.\n", Color.LawnGreen);
             Colorful.Console.WriteLine("What would you look to do?", Color.White);
-            System.Console.WriteLine("(1) View our Escape Rooms\n(2) Cancel a reservation\n(3) Log-in as Admin");
+            System.Console.WriteLine("(1) View our Escape Rooms\n(2) Cancel a reservation\n(3) Log-in as Admin\n(4) Exit");
 
             string UserType = System.Console.ReadLine();
 
@@ -52,6 +53,10 @@ namespace EscapeRoomApp
             {
                 System.Console.Clear();
                 PasswordCheck();
+            }
+            else if (UserType == "4")
+            {
+                System.Environment.Exit(0);
             }
             else
             {
@@ -288,16 +293,7 @@ namespace EscapeRoomApp
             string Input_ReservationName = System.Console.ReadLine();
 
             ReservationPlayerCheck();
-
-            Colorful.Console.WriteLine("\nPlease enter the date for your reservation:", Color.White);
-            Colorful.Console.WriteLine("Dates are entered as \"day-month-year\"\n", Color.Yellow);
-            Colorful.Console.Write("Enter the day of the month: ");
-            string Input_ReservationDate_Day = System.Console.ReadLine();
-            Colorful.Console.Write("Enter the month (0-12): ");
-            string Input_ReservationDate_Month = System.Console.ReadLine();
-            Colorful.Console.Write("Enter the year: ");
-            string Input_ReservationDate_Year = System.Console.ReadLine();
-            string Input_ReservationDate = Input_ReservationDate_Day + "-" + Input_ReservationDate_Month + "-" + Input_ReservationDate_Year;
+            DateTime Input_ReservationDate = DateParse();
 
             System.Console.Clear();
             Colorful.Console.WriteFormatted("\nEscape Room: ", Color.White);
@@ -307,7 +303,7 @@ namespace EscapeRoomApp
             Colorful.Console.WriteFormatted("Amount of people reserved for: ", Color.White);
             Colorful.Console.WriteLine(Global.ReservationPlayerAmount, Color.Yellow);
             Colorful.Console.WriteFormatted("Date reserved for: ", Color.White);
-            Colorful.Console.WriteLine(Input_ReservationDate, Color.Yellow);
+            Colorful.Console.WriteLine(Input_ReservationDate.ToString("MM/dd/yyyy"), Color.Yellow);
             if (Confirm())
             {
                 ReservationClass Reservation = new ReservationClass
@@ -323,6 +319,31 @@ namespace EscapeRoomApp
             Start();
 
         }
+
+        public static DateTime DateParse()
+        {
+            Colorful.Console.WriteLine("\nPlease enter the date for your reservation:", Color.White);
+            Colorful.Console.WriteLine("Dates are entered as \"day-month-year\nFor example: 01/02/2021 is the first of february, 2021", Color.Yellow);
+            DateTime Input_ReservationDate;
+            if (DateTime.TryParse(System.Console.ReadLine(), out Input_ReservationDate))
+            {
+                DateTime CurrentDate = DateTime.Now;
+                if (Input_ReservationDate < CurrentDate)
+                {
+                    System.Console.WriteLine("You cannot make a reservation in the past", Color.Red);
+                    System.Console.WriteLine("Todays date is: " + CurrentDate.ToString("MMMM dd, yyyy"));
+                    return DateParse();
+                }
+                else return Input_ReservationDate;
+            }
+            else
+            {
+                System.Console.WriteLine("You have entered an incorrect value, use the date format specified.");
+                return DateParse();
+            }
+
+        }
+
         static bool Confirm()
         {
             Colorful.Console.WriteLine("\nWould you like to confirm your reservation?\n(1) Confirm \n(2) Cancel");
@@ -380,18 +401,79 @@ namespace EscapeRoomApp
 
         }
 
-        static void CancelReservationMenu()
+        public static void CancelReservationMenu()
         {
+            int count = 0;
             System.Console.Clear();
-            Colorful.Console.WriteLine("\nPlease enter the name you have placed your reservation under: ", Color.White);
+            Colorful.Console.WriteLine("Please enter the name you have placed your reservation under: ", Color.White);
             string CancellationName = System.Console.ReadLine();
-            Colorful.Console.WriteFormatted("\nThe following reservations have been made under the name: ", Color.White);
-            Colorful.Console.WriteLine(CancellationName, Color.Yellow);
-            Colorful.Console.WriteLine(
-                "(1) ...");
-            System.Console.ReadKey();
-            System.Environment.Exit(1);
+            foreach (var n in ReservationList)
+            {
+                if (n.ReservationName == CancellationName)
+                {
+                    System.Console.Clear();
+                    Colorful.Console.WriteFormatted("The following reservations have been made under the name ", Color.White);
+                    Colorful.Console.WriteFormatted(CancellationName, Color.Yellow);
+                    Colorful.Console.WriteLine(":", Color.White);
+                    System.Console.WriteLine(n.ReservationName + " made a reservation for " + n.ReservationPlayerAmount + " players for " + n.ReservationEscapeRoomName + " for date of " + n.ReservationDate + "\n");
+                    count++;
+                }
+            }
+            if (count == 0)
+            {
+                System.Console.Clear();
+                Colorful.Console.WriteFormatted("Sorry, no reservation has been found under the name ", Color.White);
+                Colorful.Console.WriteLine(CancellationName, Color.Yellow);
+                System.Console.ReadKey();
+                Start();
+            }
+            else if (count > 0)
+            {
+                if (ConfirmCancellation())
+                {
+                    foreach (var n in ReservationList)
+                    {
+                        if (n.ReservationName == CancellationName)
+                        {
+                            n.ReservationName = null;
+                            n.ReservationEscapeRoomName = null;
+                            n.ReservationPlayerAmount = 0;
+                            n.ReservationDate = null;
+                            Save();
+                            Start();
+                        }
+                    }
+                }
+            }
         }
+
+
+        static bool ConfirmCancellation()
+        {
+            Colorful.Console.WriteLine("Are you sure you want to delete your reservation?", Color.White);
+            System.Console.WriteLine("(1) Confirm\n(2) Cancel");
+            string confirm = System.Console.ReadLine();
+            if (confirm == "1")
+            {
+                System.Console.Clear();
+                Colorful.Console.WriteLine("Reservation cancelled", Color.White);
+                System.Console.ReadKey();
+                return true;
+            }
+            else if (confirm == "2")
+            {
+                System.Console.Clear();
+                Colorful.Console.WriteLine("Cancellation aborted, returning to home menu", Color.White);
+                System.Console.ReadKey();
+                return false;
+            }
+            else
+            {
+                Colorful.Console.WriteLine("Invalid input!", Color.Red);
+                return ConfirmCancellation();
+            }
+        }
+
 
         static void PasswordCheck()
         // Gets called when the user chooses the 'admin' option.
@@ -455,10 +537,13 @@ namespace EscapeRoomApp
             if (AdminChoice == "2")
             {
                 System.Console.Clear();
-                Colorful.Console.WriteLine("\nThe following reservations have been made: \n", Color.White);
-                for (int i = 0; i < ReservationList.Count; i++)
+                Colorful.Console.WriteLine("The following reservations have been made: \n", Color.White);
+                foreach (var n in ReservationList)
                 {
-                    System.Console.WriteLine(ReservationList[i]);
+                    if (n.ReservationName != null)
+                    {
+                        System.Console.WriteLine(n.ReservationName + " made a reservation for " + n.ReservationPlayerAmount + " players for " + n.ReservationEscapeRoomName + " for date of " + n.ReservationDate);
+                    }
                 }
                 System.Console.ReadKey();
                 AdminMenu();
@@ -497,7 +582,9 @@ namespace EscapeRoomApp
                 System.Console.WriteLine(
                     "(1) Escape Room Name \n" +
                     "(2) Maximum players allowed \n" +
-                    "(3) Minimum players allowed");
+                    "(3) Minimum players allowed \n" +
+                    "(4) Opening time \n" +
+                    "(5) Closing time");
                 string EditNumber = System.Console.ReadLine();
 
                 if (EditNumber == "1")
@@ -528,6 +615,11 @@ namespace EscapeRoomApp
                     }
                     EditInfo();
                 }
+                if (EditNumber == "4" || EditNumber == "5")
+                {
+                    System.Console.WriteLine("Enter the new time:");
+                    var readline = System.Console.ReadLine();
+                }
             }
             if (EscapeRoomNumber == "2")
             {
@@ -536,7 +628,9 @@ namespace EscapeRoomApp
                 System.Console.WriteLine(
                     "(1) Escape Room Name \n" +
                     "(2) Maximum players allowed \n" +
-                    "(3) Minimum players allowed");
+                    "(3) Minimum players allowed \n" +
+                    "(4) Opening time \n" +
+                    "(5) Closing time");
                 string EditNumber = System.Console.ReadLine();
 
                 if (EditNumber == "1")
@@ -561,6 +655,11 @@ namespace EscapeRoomApp
                             Global.EscPlayers2min = NewNumber;
                         }
                     }
+                    if (EditNumber == "4" || EditNumber == "5")
+                    {
+                        System.Console.WriteLine("Enter the new time:");
+                        var readline2 = System.Console.ReadLine();
+                    }
                     else
                     {
                         Colorful.Console.WriteLine("Input is not a valid number", Color.Red);
@@ -575,7 +674,9 @@ namespace EscapeRoomApp
                 System.Console.WriteLine(
                     "(1) Escape Room Name \n" +
                     "(2) Maximum players allowed \n" +
-                    "(3) Minimum players allowed");
+                    "(3) Minimum players allowed \n" +
+                    "(4) Opening time\n" +
+                    "(5) Closing time");
                 string EditNumber = System.Console.ReadLine();
 
                 if (EditNumber == "1")
@@ -600,6 +701,11 @@ namespace EscapeRoomApp
                             Global.EscPlayers3min = NewNumber;
                         }
                     }
+                    if (EditNumber == "4" || EditNumber == "5")
+                    {
+                        System.Console.WriteLine("Enter the new time:");
+                        var readline3 = System.Console.ReadLine();
+                    }
                     else
                     {
                         Colorful.Console.WriteLine("Input is not a valid number", Color.Red);
@@ -614,7 +720,9 @@ namespace EscapeRoomApp
                 System.Console.WriteLine(
                     "(1) Escape Room Name \n" +
                     "(2) Maximum players allowed \n" +
-                    "(3) Minimum players allowed");
+                    "(3) Minimum players allowed \n" +
+                    "(4) Opening time \n" +
+                    "(5) Closing time");
                 string EditNumber = System.Console.ReadLine();
 
                 if (EditNumber == "1")
@@ -638,6 +746,15 @@ namespace EscapeRoomApp
                         {
                             Global.EscPlayers4min = NewNumber;
                         }
+                        else if (EditNumber == "4")
+                        {
+                            ChangePassword();
+                        }
+                    }
+                    if (EditNumber == "4" || EditNumber == "5")
+                    {
+                        System.Console.WriteLine("Enter the new time:");
+                        var readline4 = System.Console.ReadLine();
                     }
                     else
                     {
@@ -653,7 +770,9 @@ namespace EscapeRoomApp
                 System.Console.WriteLine(
                     "(1) Escape Room Name \n" +
                     "(2) Maximum players allowed \n" +
-                    "(3) Minimum players allowed");
+                    "(3) Minimum players allowed \n" +
+                    "(4) Opening time \n" +
+                    "(5) Closing time");
                 string EditNumber = System.Console.ReadLine();
 
                 if (EditNumber == "1")
@@ -678,6 +797,11 @@ namespace EscapeRoomApp
                             Global.EscPlayers5min = NewNumber;
                         }
                     }
+                    if (EditNumber == "4" || EditNumber == "5")
+                    {
+                        System.Console.WriteLine("Enter the new time:");
+                        var readline5 = System.Console.ReadLine();
+                    }
                     else
                     {
                         Colorful.Console.WriteLine("Input is not a valid number", Color.Red);
@@ -691,6 +815,22 @@ namespace EscapeRoomApp
                 AdminMenu();
             }
         }
+
+
+        static void ChangePassword()
+        //Gets called when the admin chooses option 4 in AdminMenu
+        {
+            string jsonString = Global.AdminPassword;
+            jsonString = JsonConvert.SerializeObject(jsonString);
+            File.WriteAllText(filePath2, jsonString);
+            Colorful.Console.WriteLine("Please enter the current password:", Color.White);
+            string CurrentPasswordCheck = System.Console.ReadLine();
+            if (CurrentPasswordCheck == Global.AdminPassword)
+            {
+
+            }
+        }
+
 
         static void Save()
         {

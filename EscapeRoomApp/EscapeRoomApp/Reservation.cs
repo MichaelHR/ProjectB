@@ -12,9 +12,9 @@ namespace EscapeRoomApp
         public string ReservationName { get; set; }
         public string ReservationEscapeRoomName { get; set; }
         public int ReservationPlayerAmount { get; set; }
-        public string ReservationDate { get; set; }
+        public DateTime ReservationDate { get; set; }
 
-        public ReservationClass(string rn, string rrn, int rpa, string rd)
+        public ReservationClass(string rn, string rrn, int rpa, DateTime rd)
         {
             ReservationName = rn;
             ReservationEscapeRoomName = rrn;
