@@ -287,16 +287,7 @@ namespace EscapeRoomApp
             string Input_ReservationName = System.Console.ReadLine();
 
             ReservationPlayerCheck();
-
-            Colorful.Console.WriteLine("\nPlease enter the date for your reservation:", Color.White);
-            Colorful.Console.WriteLine("Dates are entered as \"day-month-year\"\n", Color.Yellow);
-            Colorful.Console.Write("Enter the day of the month: ");
-            string Input_ReservationDate_Day = System.Console.ReadLine();
-            Colorful.Console.Write("Enter the month (0-12): ");
-            string Input_ReservationDate_Month = System.Console.ReadLine();
-            Colorful.Console.Write("Enter the year: ");
-            string Input_ReservationDate_Year = System.Console.ReadLine();
-            string Input_ReservationDate = Input_ReservationDate_Day + "-" + Input_ReservationDate_Month + "-" + Input_ReservationDate_Year;
+            DateTime Input_ReservationDate = DateParse();
 
             System.Console.Clear();
             Colorful.Console.WriteFormatted("\nEscape Room: ", Color.White);
@@ -306,7 +297,7 @@ namespace EscapeRoomApp
             Colorful.Console.WriteFormatted("Amount of people reserved for: ", Color.White);
             Colorful.Console.WriteLine(Global.ReservationPlayerAmount, Color.Yellow);
             Colorful.Console.WriteFormatted("Date reserved for: ", Color.White);
-            Colorful.Console.WriteLine(Input_ReservationDate, Color.Yellow);
+            Colorful.Console.WriteLine(Input_ReservationDate.ToString("MM/dd/yyyy"), Color.Yellow);
             if (Confirm())
             {
                 ReservationClass Reservation = new ReservationClass
@@ -322,6 +313,31 @@ namespace EscapeRoomApp
             Start();
             
         }
+
+        public static DateTime DateParse()
+        {
+            Colorful.Console.WriteLine("\nPlease enter the date for your reservation:", Color.White);
+            Colorful.Console.WriteLine("Dates are entered as \"day-month-year\nFor example: 01/02/2021 is the first of february, 2021", Color.Yellow);
+            DateTime Input_ReservationDate;
+            if (DateTime.TryParse(System.Console.ReadLine(), out Input_ReservationDate))
+            {
+                DateTime CurrentDate = DateTime.Now;
+                if (Input_ReservationDate < CurrentDate)
+                {
+                    System.Console.WriteLine("You cannot make a reservation in the past", Color.Red);
+                    System.Console.WriteLine("Todays date is: " + CurrentDate.ToString("MMMM dd, yyyy"));
+                    return DateParse();
+                }
+                else return Input_ReservationDate;
+            }
+            else
+            {
+                System.Console.WriteLine("You have entered an incorrect value, use the date format specified.");
+                return DateParse();
+            }
+
+        }
+
         static bool Confirm()
         {
             Colorful.Console.WriteLine("\nWould you like to confirm your reservation?\n(1) Confirm \n(2) Cancel");
