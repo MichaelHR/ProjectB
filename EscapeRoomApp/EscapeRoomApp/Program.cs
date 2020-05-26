@@ -438,7 +438,6 @@ namespace EscapeRoomApp
                             n.ReservationName = null;
                             n.ReservationEscapeRoomName = null;
                             n.ReservationPlayerAmount = 0;
-                            n.ReservationDate = null;
                             Save();
                             Start();
                         }
@@ -478,12 +477,11 @@ namespace EscapeRoomApp
         static void PasswordCheck()
         // Gets called when the user chooses the 'admin' option.
         {
-            string AdminPassword = "Admin";
             if (Attempts < 3)
             {
                 Colorful.Console.WriteLine("Please enter the password:", Color.White);
                 string PasswordInput = System.Console.ReadLine();
-                if (PasswordInput == AdminPassword)
+                if (PasswordInput == Global.AdminPassword)
                 {
                     System.Console.Clear();
                     Attempts = 0;
@@ -526,7 +524,8 @@ namespace EscapeRoomApp
             System.Console.WriteLine("" +
                 "(1) Edit Escape Room information \n" +
                 "(2) Check the reservations \n" +
-                "(3) Log-out as Admin");
+                "(3) Change password \n" +
+                "(4) Log-out as Admin");
 
             string AdminChoice = System.Console.ReadLine();
             if (AdminChoice == "1")
@@ -549,6 +548,11 @@ namespace EscapeRoomApp
                 AdminMenu();
             }
             if (AdminChoice == "3")
+            {
+                System.Console.Clear();
+                ChangePassword();
+            }
+            if (AdminChoice == "4")
             {
                 Attempts = 0;
                 System.Console.Clear();
@@ -823,9 +827,8 @@ namespace EscapeRoomApp
             string jsonString = Global.AdminPassword;
             jsonString = JsonConvert.SerializeObject(jsonString);
             File.WriteAllText(filePath2, jsonString);
-            Colorful.Console.WriteLine("Please enter the current password:", Color.White);
-            string CurrentPasswordCheck = System.Console.ReadLine();
-            if (CurrentPasswordCheck == Global.AdminPassword)
+            Colorful.Console.WriteLine("Please enter the new password below:", Color.White);
+            Global.AdminPassword = System.Console.ReadLine();
             {
 
             }
