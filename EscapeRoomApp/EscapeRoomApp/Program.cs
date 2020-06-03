@@ -20,7 +20,7 @@ namespace EscapeRoomApp
 
         public static List<ReservationClass> ReservationList = new List<ReservationClass>();
         public static string filePath = Environment.CurrentDirectory + @"\Reservations.json";
-        public static string filePath2 = Environment.CurrentDirectory + @"\ChangePassword.json";
+        public static string filePath2 = Environment.CurrentDirectory + @"\Password.json";
 
         public static void Main()
         //Beginning function.
@@ -40,6 +40,12 @@ namespace EscapeRoomApp
             else if (!File.Exists(filePath))
             {
                 Save();
+            }
+
+            if (!File.Exists(filePath2))
+            {
+                var jsonString = System.Text.Json.JsonSerializer.Serialize("Admin");
+                File.WriteAllText(filePath2, jsonString);
             }
 
             Start();
@@ -682,12 +688,12 @@ namespace EscapeRoomApp
         static void PasswordCheck()
         // Gets called when the user chooses the 'admin' option.
         {
-            string jPass = File.ReadAllText("Password.json");
+            string jPass = File.ReadAllText(filePath2);
             if (Attempts < 3)
             {
                 Colorful.Console.WriteLine("Please enter the password:", Color.White);
                 string PasswordInput = '"' + Console.ReadLine() + '"';
-                if (PasswordInput == File.ReadAllText("Password.json"))
+                if (PasswordInput == File.ReadAllText(filePath2))
                 {
                     Console.Clear();
                     Attempts = 0;
@@ -1033,7 +1039,7 @@ namespace EscapeRoomApp
         {                
             Colorful.Console.WriteLine("Please enter the new password below:", Color.White);
             var jsonString = System.Text.Json.JsonSerializer.Serialize(Console.ReadLine());
-            File.WriteAllText("Password.json", jsonString);
+            File.WriteAllText(filePath2, jsonString);
         }
 
 
