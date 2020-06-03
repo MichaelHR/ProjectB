@@ -1,9 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <StartupObject>EscapeRoomApp.Program</StartupObject>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Password.json" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Colorful.Console" Version="1.2.10" />
