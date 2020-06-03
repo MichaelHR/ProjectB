@@ -14,7 +14,7 @@ namespace EscapeRoomApp
         public static string EscName5 = "Killer Clowns";
 
         // Opening times for each Escape Room
-        public static DateTime Esc1_OpeningTime = new DateTime(2019, 5, 19, 12, 0, 0);
+        public static DateTime Ecs1_OpeningTime = new DateTime(2019, 5, 19, 12, 0, 0);
         public static DateTime Esc1_ClosingTime = new DateTime(2019, 5, 19, 21, 0, 0);
         public static DateTime Esc2_OpeningTime = new DateTime(2019, 5, 19, 12, 0, 0);
         public static DateTime Esc2_ClosingTime = new DateTime(2019, 5, 19, 21, 0, 0);

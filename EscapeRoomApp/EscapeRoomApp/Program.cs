@@ -10,7 +10,16 @@ namespace EscapeRoomApp
 {
     public class Program
     {
+        //Sets up the opening & closing hours for the five escape rooms
+        public static EscapeRoom EscapeRoom1 = new EscapeRoom(1200, 2100, 100);
+        public static EscapeRoom EscapeRoom2 = new EscapeRoom(1200, 2100, 100);
+        public static EscapeRoom EscapeRoom3 = new EscapeRoom(1700, 2400, 100);
+        public static EscapeRoom EscapeRoom4 = new EscapeRoom(1700, 2400, 100);
+        public static EscapeRoom EscapeRoom5 = new EscapeRoom(1700, 2400, 100);
+
+        //Counter for login attempts into admin menu
         public static int Attempts;
+
         public static List<ReservationClass> ReservationList = new List<ReservationClass>();
         public static string filePath = Environment.CurrentDirectory + @"\Reservations.json";
         public static string filePath2 = Environment.CurrentDirectory + @"\ChangePassword.json";
@@ -18,6 +27,14 @@ namespace EscapeRoomApp
         public static void Main()
         //Beginning function.
         {
+            //Loads the timeslots for the EscapeRooms
+            AddTimes(EscapeRoom1);
+            AddTimes(EscapeRoom2);
+            AddTimes(EscapeRoom3);
+            AddTimes(EscapeRoom4);
+            AddTimes(EscapeRoom5);
+
+            //If a Reservation.json file exists, it will read it and deserialize (if not: create empty file)
             if (File.Exists(filePath))
             {
                 Deserialize();
@@ -26,11 +43,12 @@ namespace EscapeRoomApp
             {
                 Save();
             }
+
             Start();
         }
 
         static void Start()
-        // Gets called at the start of the program.
+        // Gets called at the start of the program. Main interface
         {
             System.Console.Clear();
             Colorful.Console.WriteLine("Welcome to the Escape Room Application.\n", Color.LawnGreen);
@@ -66,20 +84,9 @@ namespace EscapeRoomApp
             }
         }
 
-
-        /*static void ClientMenu()
-        // Gets called when the user chooses the 'client' option.
-        {
-            System.Console.Clear();
-            Colorful.Console.WriteLine("Welcome Client.\n", Color.LawnGreen);
-            Colorful.Console.WriteLine("What would you like to do?", Color.White);
-            System.Console.WriteLine("(1) Discover our Escape Rooms\n(2) Reserve an Escape Room\n(3) Cancel a reservation\n(4) Return to Start Menu");
-            string ClientAction = System.Console.ReadLine();
-        }*/
-
-
         static void EscapeRoomList()
         //Gets called when the user chooses the option to check out the escape rooms.
+        //This function allows you to view the escape rooms and choose to make a reservation
         {
             Colorful.Console.WriteLine("Which Escape Room would you like to check out?\n", Color.White);
             System.Console.WriteLine(
@@ -92,6 +99,7 @@ namespace EscapeRoomApp
             string EscapeRoomNumber = System.Console.ReadLine();
             System.Console.Clear();
             string Input = "";
+
             if (EscapeRoomNumber == "1")
             {
                 System.Console.WriteLine(
@@ -101,7 +109,7 @@ namespace EscapeRoomApp
                     "Age: Children" + "\n" +
                     "Time: 60 minutes" + "\n" +
                     "Amount of players: " + Global.EscPlayers1min + "-" + Global.EscPlayers1max + "\n" +
-                    "Open from: " + Global.Esc1_OpeningTime.ToString("HH:mm") + " - " + Global.Esc1_ClosingTime.ToString("HH:mm") + "\n" +
+                    "Open from: " + Global.Ecs1_OpeningTime.ToString("HH:mm") + " - " + Global.Esc1_ClosingTime.ToString("HH:mm") + "\n" +
                     "Location: Wijnhaven 107, 3011 WN Rotterdam" + "\n" +
                     "\nContact information:\n" +
                     "Phone number: 010-1234567\nEmail: escape.room@hr.nl\n");
@@ -244,6 +252,34 @@ namespace EscapeRoomApp
         }
 
 
+        public static void AddTimes(EscapeRoom er)
+        {
+            int temp = er.Start;
+            while (temp + er.Duration <= er.End)
+            {
+                int i = temp / 100;
+                int ii = temp % 100;
+                int ii_end = (temp + er.Duration) % 100;
+                ii_end = ii_end switch
+                {
+                    25 => 15,
+                    50 => 30,
+                    75 => 45,
+                    _ => 0
+                };
+                ii = ii switch
+                {
+                    25 => 15,
+                    50 => 30,
+                    75 => 45,
+                    _ => 0,
+                };
+                temp += er.Duration;
+                er.TimeSlots1.Add(new TimeSlot(i, temp / 100, ii, ii_end));
+            }
+
+        }
+
         public static void ReservationMenu()
         {
             string Input_ReservationEscapeRoomName = Global.ReservationEscapeRoomNumber;
@@ -295,7 +331,11 @@ namespace EscapeRoomApp
             ReservationPlayerCheck();
             DateTime Input_ReservationDate = DateParse();
 
+
+            string Input_TimeSlot = TimeSlotSelect(Global.ReservationEscapeRoomNumber);
             System.Console.Clear();
+
+
             Colorful.Console.WriteFormatted("\nEscape Room: ", Color.White);
             Colorful.Console.WriteLine(Input_ReservationEscapeRoomName, Color.Yellow);
             Colorful.Console.WriteFormatted("Reservation name: ", Color.White);
@@ -303,11 +343,13 @@ namespace EscapeRoomApp
             Colorful.Console.WriteFormatted("Amount of people reserved for: ", Color.White);
             Colorful.Console.WriteLine(Global.ReservationPlayerAmount, Color.Yellow);
             Colorful.Console.WriteFormatted("Date reserved for: ", Color.White);
-            Colorful.Console.WriteLine(Input_ReservationDate.ToString("MM/dd/yyyy"), Color.Yellow);
+            Colorful.Console.WriteLine(Input_ReservationDate.ToString("dd/MM/yyyy"), Color.Yellow);
+            Colorful.Console.WriteFormatted("Time reserved for: ", Color.White);
+            Colorful.Console.WriteLine(Input_TimeSlot, Color.Yellow);
             if (Confirm())
             {
                 ReservationClass Reservation = new ReservationClass
-                    (Input_ReservationName, Input_ReservationEscapeRoomName, Global.ReservationPlayerAmount, Input_ReservationDate);
+                    (Input_ReservationName, Input_ReservationEscapeRoomName, Global.ReservationPlayerAmount, Input_ReservationDate, Input_TimeSlot);
                 ReservationList.Add(Reservation);
 
                 Save();
@@ -320,7 +362,171 @@ namespace EscapeRoomApp
 
         }
 
+        public static string TimeSlotSelect(string ername)
+            // Function that displays time slots for the user and allows them to select one for their reservation
+            // Includes parsing to prevent incorrect inputs
+        {
+            Colorful.Console.WriteLine("\nPlease choose one of the following available times: ");
+            int i = 0;
+            string choice;
+
+            // Since each Escape Room has it's own time slots, they need their own desplay
+            // Display & select for Escape Room 1:
+            if (Global.ReservationEscapeRoomNumber == "1")
+            {
+                foreach (TimeSlot t in EscapeRoom1.TimeSlots1)
+                {
+                    i++;
+                    System.Console.WriteLine($"({i}) " + t);
+                }
+                choice = System.Console.ReadLine();
+                if (int.TryParse(choice, out int NewChoice))
+                {
+                    NewChoice = NewChoice - 1;
+                    if (NewChoice > -1 && NewChoice < EscapeRoom1.TimeSlots1.Count)
+                    {
+                        return $"{EscapeRoom1.TimeSlots1[NewChoice]}";
+                    }
+                    else
+                    {
+                        Colorful.Console.WriteLine("Input is not a valid time slot", Color.Red);
+                        return TimeSlotSelect(Global.ReservationEscapeRoomNumber);
+                    }
+                }
+                else
+                {
+                    Colorful.Console.WriteLine("Input is not a valid number", Color.Red);
+                    return TimeSlotSelect(Global.ReservationEscapeRoomNumber);
+                }
+            }
+
+            // The code above repeated, but for Escape Room 2:
+            if (Global.ReservationEscapeRoomNumber == "2")
+            {
+                foreach (TimeSlot t in EscapeRoom2.TimeSlots1)
+                {
+                    i++;
+                    System.Console.WriteLine($"({i}) " + t);
+                }
+                choice = System.Console.ReadLine();
+                if (int.TryParse(choice, out int NewChoice))
+                {
+                    NewChoice = NewChoice - 1;
+                    if (NewChoice > -1 && NewChoice < EscapeRoom2.TimeSlots1.Count)
+                    {
+                        return $"{EscapeRoom2.TimeSlots1[NewChoice]}";
+                    }
+                    else
+                    {
+                        Colorful.Console.WriteLine("Input is not a valid time slot", Color.Red);
+                        return TimeSlotSelect(Global.ReservationEscapeRoomNumber);
+                    }
+                }
+                else
+                {
+                    Colorful.Console.WriteLine("Input is not a valid number", Color.Red);
+                    return TimeSlotSelect(Global.ReservationEscapeRoomNumber);
+                }
+            }
+
+            // For Escape Room 3:
+            if (Global.ReservationEscapeRoomNumber == "3")
+            {
+                foreach (TimeSlot t in EscapeRoom3.TimeSlots1)
+                {
+                    i++;
+                    System.Console.WriteLine($"({i}) " + t);
+                }
+                choice = System.Console.ReadLine();
+                if (int.TryParse(choice, out int NewChoice))
+                {
+                    NewChoice = NewChoice - 1;
+                    if (NewChoice > -1 && NewChoice < EscapeRoom3.TimeSlots1.Count)
+                    {
+                        return $"{EscapeRoom3.TimeSlots1[NewChoice]}";
+                    }
+                    else
+                    {
+                        Colorful.Console.WriteLine("Input is not a valid time slot", Color.Red);
+                        return TimeSlotSelect(Global.ReservationEscapeRoomNumber);
+                    }
+                }
+                else
+                {
+                    Colorful.Console.WriteLine("Input is not a valid number", Color.Red);
+                    return TimeSlotSelect(Global.ReservationEscapeRoomNumber);
+                }
+            }
+
+            //For Escape Room 4:
+            if (Global.ReservationEscapeRoomNumber == "4")
+            {
+                foreach (TimeSlot t in EscapeRoom4.TimeSlots1)
+                {
+                    i++;
+                    System.Console.WriteLine($"({i}) " + t);
+                }
+                choice = System.Console.ReadLine();
+                if (int.TryParse(choice, out int NewChoice))
+                {
+                    NewChoice = NewChoice - 1;
+                    if (NewChoice > -1 && NewChoice < EscapeRoom4.TimeSlots1.Count)
+                    {
+                        return $"{EscapeRoom4.TimeSlots1[NewChoice]}";
+                    }
+                    else
+                    {
+                        Colorful.Console.WriteLine("Input is not a valid time slot", Color.Red);
+                        return TimeSlotSelect(Global.ReservationEscapeRoomNumber);
+                    }
+                }
+                else
+                {
+                    Colorful.Console.WriteLine("Input is not a valid number", Color.Red);
+                    return TimeSlotSelect(Global.ReservationEscapeRoomNumber);
+                }
+            }
+
+            // For Escape Room 5:
+            if (Global.ReservationEscapeRoomNumber == "5")
+            {
+                foreach (TimeSlot t in EscapeRoom5.TimeSlots1)
+                {
+                    i++;
+                    System.Console.WriteLine($"({i}) " + t);
+                }
+                choice = System.Console.ReadLine();
+                if (int.TryParse(choice, out int NewChoice))
+                {
+                    NewChoice = NewChoice - 1;
+                    if (NewChoice > -1 && NewChoice < EscapeRoom5.TimeSlots1.Count)
+                    {
+                        return $"{EscapeRoom5.TimeSlots1[NewChoice]}";
+                    }
+                    else
+                    {
+                        Colorful.Console.WriteLine("Input is not a valid time slot", Color.Red);
+                        return TimeSlotSelect(Global.ReservationEscapeRoomNumber);
+                    }
+                }
+                else
+                {
+                    Colorful.Console.WriteLine("Input is not a valid number", Color.Red);
+                    return TimeSlotSelect(Global.ReservationEscapeRoomNumber);
+                }
+            }
+
+            // All paths need a return statement:
+            else
+            {
+                Colorful.Console.WriteLine("Input is not an escape room", Color.Red);
+                return TimeSlotSelect(Global.ReservationEscapeRoomNumber);
+            }
+        }
+
         public static DateTime DateParse()
+        // Parse for date selection, ensures that the format is followed
+        // and that reservations cannot be made in the past
         {
             Colorful.Console.WriteLine("\nPlease enter the date for your reservation:", Color.White);
             Colorful.Console.WriteLine("Dates are entered as \"day-month-year\nFor example: 01/02/2021 is the first of february, 2021", Color.Yellow);
@@ -345,6 +551,7 @@ namespace EscapeRoomApp
         }
 
         static bool Confirm()
+        // Confirm your reservation or cancel the process
         {
             Colorful.Console.WriteLine("\nWould you like to confirm your reservation?\n(1) Confirm \n(2) Cancel");
             string ChoiceNumber = System.Console.ReadLine();
@@ -371,7 +578,7 @@ namespace EscapeRoomApp
 
 
         static void ReservationPlayerCheck()
-        // Gets called to handle input for the amount of players on a reservation
+        // Gets called to handle the input for the amount of players on a reservation
         {
             Colorful.Console.WriteLine("\nPlease enter the amount of people you would like to reserve this room for: ", Color.White);
             var PlayerAmount = System.Console.ReadLine();
@@ -438,7 +645,6 @@ namespace EscapeRoomApp
                             n.ReservationName = null;
                             n.ReservationEscapeRoomName = null;
                             n.ReservationPlayerAmount = 0;
-                            n.ReservationDate = null;
                             Save();
                             Start();
                         }
@@ -542,7 +748,7 @@ namespace EscapeRoomApp
                 {
                     if (n.ReservationName != null)
                     {
-                        System.Console.WriteLine(n.ReservationName + " made a reservation for " + n.ReservationPlayerAmount + " players for " + n.ReservationEscapeRoomName + " for date of " + n.ReservationDate);
+                        System.Console.WriteLine(n.ReservationName + " made a reservation for " + n.ReservationPlayerAmount + " players for " + n.ReservationEscapeRoomName + " for date of " + n.ReservationDate.Date.ToShortDateString() + " at " + n.ReservationTime );
                     }
                 }
                 System.Console.ReadKey();
