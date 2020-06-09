@@ -9,7 +9,7 @@ namespace EscapeRoomApp
     {
         public List<TimeSlot> TimeSlots1 = new List<TimeSlot>();
         public TimeSlot Time { get; set; }
-
+        public bool Reserved { get; set; }
         public int Start { get; set; }
         public int End { get; set; }
         public int Duration { get; set; }
@@ -18,6 +18,7 @@ namespace EscapeRoomApp
             Start = s;
             End = e;
             Duration = d;
+            Reserved = false;
         }
 
     }

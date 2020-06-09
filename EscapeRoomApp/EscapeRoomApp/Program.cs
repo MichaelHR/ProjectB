@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using Newtonsoft.Json;
 using System.IO;
+using System.Linq;
 
 namespace EscapeRoomApp
 {
@@ -18,6 +19,7 @@ namespace EscapeRoomApp
         //Counter for login attempts into admin menu
         public static int Attempts;
 
+        //Sets up ReservationList and filePaths for serialization later down in the program
         public static List<ReservationClass> ReservationList = new List<ReservationClass>();
         public static string filePath = Environment.CurrentDirectory + @"\Reservations.json";
         public static string filePath2 = Environment.CurrentDirectory + @"\Password.json";
@@ -335,9 +337,17 @@ namespace EscapeRoomApp
             ReservationPlayerCheck();
             DateTime Input_ReservationDate = DateParse();
 
-
+            Console.Clear();
             string Input_TimeSlot = TimeSlotSelect(Global.ReservationEscapeRoomNumber);
-            System.Console.Clear();
+
+            bool Reserved = CheckIfAvailable(Input_ReservationEscapeRoomName, Input_ReservationDate, Input_TimeSlot);
+            while (Reserved == true)
+            {
+                Console.Clear();
+                Console.WriteLine($"The time slot you wanted to reserve ({Input_TimeSlot}) is already occupied");
+                Input_TimeSlot = TimeSlotSelect(Global.ReservationEscapeRoomNumber);
+                Reserved = CheckIfAvailable(Input_ReservationEscapeRoomName, Input_ReservationDate, Input_TimeSlot);
+            }
 
             Console.Clear();
             Colorful.Console.WriteFormatted("\nEscape Room: ", Color.White);
@@ -366,9 +376,17 @@ namespace EscapeRoomApp
 
         }
 
+        public static bool CheckIfAvailable(string ername, DateTime i_rd, string i_ts)
+        {
+            bool available = ReservationList.Any(x => x.ReservationEscapeRoomName == ername && x.ReservationDate == i_rd && x.ReservationTime == i_ts);
+            Console.WriteLine("Reserved? " + available);
+            return available;
+        }
+
+
+        // Function that displays time slots for the user and allows them to select one for their reservation
+        // Includes parsing to prevent incorrect inputs
         public static string TimeSlotSelect(string ername)
-            // Function that displays time slots for the user and allows them to select one for their reservation
-            // Includes parsing to prevent incorrect inputs
         {
             Colorful.Console.WriteLine("\nPlease choose one of the following available times: ");
             int i = 0;
@@ -754,7 +772,6 @@ namespace EscapeRoomApp
                     if (n.ReservationName != null)
                     {
                         System.Console.WriteLine(n.ReservationName + " made a reservation for " + n.ReservationPlayerAmount + " players for " + n.ReservationEscapeRoomName + " for date of " + n.ReservationDate.Date.ToShortDateString() + " at " + n.ReservationTime );
-                        Console.WriteLine(n.ReservationName + " made a reservation for " + n.ReservationPlayerAmount + " players for " + n.ReservationEscapeRoomName + " for date of " + n.ReservationDate);
                     }
                 }
                 Console.ReadKey();
@@ -1035,20 +1052,22 @@ namespace EscapeRoomApp
 
 
         static void ChangePassword()
-        //Gets called when the admin chooses option 4 in AdminMenu
+        // Gets called when the admin chooses option 4 in AdminMenu
         {                
             Colorful.Console.WriteLine("Please enter the new password below:", Color.White);
             var jsonString = System.Text.Json.JsonSerializer.Serialize(Console.ReadLine());
             File.WriteAllText(filePath2, jsonString);
         }
 
-
+        // Serializes and saves the Reservation List
         static void Save()
         {
             string jsonString;
             jsonString = JsonConvert.SerializeObject(ReservationList, Formatting.Indented);
             File.WriteAllText(filePath, jsonString);
         }
+
+        // Reads Reservation.Json and converts it into a list
         public static void Deserialize()
         {
             ReservationList = JsonConvert.DeserializeObject<List<ReservationClass>>(File.ReadAllText(filePath));
