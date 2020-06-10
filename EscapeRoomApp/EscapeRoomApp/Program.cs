@@ -647,7 +647,7 @@ namespace EscapeRoomApp
                     Colorful.Console.WriteFormatted("The following reservations have been made under the name ", Color.White);
                     Colorful.Console.WriteFormatted(CancellationName, Color.Yellow);
                     Colorful.Console.WriteLine(":", Color.White);
-                    Console.WriteLine(n.ReservationName + " made a reservation for " + n.ReservationPlayerAmount + " players for " + n.ReservationEscapeRoomName + " for date of " + n.ReservationDate + "\n");
+                    Console.WriteLine(n.ReservationName + " made a reservation for " + n.ReservationPlayerAmount + " players for " + n.ReservationEscapeRoomName + " for " + n.ReservationDate.Date.ToLongDateString() + " at " + n.ReservationTime + "\n");
                     count++;
                 }
             }
@@ -674,6 +674,10 @@ namespace EscapeRoomApp
                             Start();
                         }
                     }
+                }
+                else
+                {
+                    Start();
                 }
             }
         }
