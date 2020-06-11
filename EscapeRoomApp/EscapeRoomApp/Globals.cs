@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EscapeRoomApp
 {
-    public static class Global
+    public class Global
     {
         // Names for each Escape Room
         public static string EscName1 = "Clumsy Clowns";

@@ -10,11 +10,11 @@ namespace EscapeRoomApp
     public class Program
     {
         //Sets up the opening & closing hours for the five escape rooms
-        public static EscapeRoom EscapeRoom1 = new EscapeRoom(1200, 2100, 100);
-        public static EscapeRoom EscapeRoom2 = new EscapeRoom(1200, 2100, 100);
-        public static EscapeRoom EscapeRoom3 = new EscapeRoom(1700, 2400, 100);
-        public static EscapeRoom EscapeRoom4 = new EscapeRoom(1700, 2400, 100);
-        public static EscapeRoom EscapeRoom5 = new EscapeRoom(1700, 2400, 100);
+        public static EscapeRoomTime EscapeRoom1 = new EscapeRoomTime(1200, 2100, 100);
+        public static EscapeRoomTime EscapeRoom2 = new EscapeRoomTime(1200, 2100, 100);
+        public static EscapeRoomTime EscapeRoom3 = new EscapeRoomTime(1700, 2400, 100);
+        public static EscapeRoomTime EscapeRoom4 = new EscapeRoomTime(1700, 2400, 100);
+        public static EscapeRoomTime EscapeRoom5 = new EscapeRoomTime(1700, 2400, 100);
 
         //Counter for login attempts into admin menu
         public static int Attempts;
@@ -25,7 +25,6 @@ namespace EscapeRoomApp
         public static string filePath2 = Environment.CurrentDirectory + @"\Password.json";
 
         public static void Main()
-        //Beginning function.
         {
             //Loads the timeslots for the EscapeRooms
             AddTimes(EscapeRoom1);
@@ -257,7 +256,7 @@ namespace EscapeRoomApp
         }
 
 
-        public static void AddTimes(EscapeRoom er)
+        public static void AddTimes(EscapeRoomTime er)
         {
             int temp = er.Start;
             while (temp + er.Duration <= er.End)
@@ -807,25 +806,15 @@ namespace EscapeRoomApp
         {
             Console.Clear();
             Colorful.Console.WriteLine("\nWhich escape room would you like to edit? \n", Color.White);
-            Console.WriteLine("" +
-                "(1) " + Global.EscName1 + "\n" +
-                "(2) " + Global.EscName2 + "\n" +
-                "(3) " + Global.EscName3 + "\n" +
-                "(4) " + Global.EscName4 + "\n" +
-                "(5) " + Global.EscName5 + "\n" +
-                "(6) Return");
+            Console.WriteLine("(1) " + Global.EscName1 + "\n" + "(2) " + Global.EscName2 + "\n" + "(3) " + Global.EscName3 + "\n" + "(4) " + Global.EscName4 + "\n" + "(5) " + Global.EscName5 + "\n" + "(6) Return");
+            string OptionMenu = "(1) Escape Room Name \n" + "(2) Maximum players allowed \n" + "(3) Minimum players allowed \n";
             string EscapeRoomNumber = Console.ReadLine();
 
             if (EscapeRoomNumber == "1")
             {
                 Console.Clear();
                 Colorful.Console.WriteLine("What would you like to edit? \n", Color.White);
-                Console.WriteLine(
-                    "(1) Escape Room Name \n" +
-                    "(2) Maximum players allowed \n" +
-                    "(3) Minimum players allowed \n" +
-                    "(4) Opening time \n" +
-                    "(5) Closing time");
+                Console.WriteLine(OptionMenu);
                 string EditNumber = Console.ReadLine();
 
                 if (EditNumber == "1")
@@ -856,22 +845,12 @@ namespace EscapeRoomApp
                     }
                     EditInfo();
                 }
-                if (EditNumber == "4" || EditNumber == "5")
-                {
-                    Console.WriteLine("Enter the new time:");
-                    var readline = Console.ReadLine();
-                }
             }
             if (EscapeRoomNumber == "2")
             {
                 Console.Clear();
                 Colorful.Console.WriteLine("What would you like to edit? \n", Color.White);
-                Console.WriteLine(
-                    "(1) Escape Room Name \n" +
-                    "(2) Maximum players allowed \n" +
-                    "(3) Minimum players allowed \n" +
-                    "(4) Opening time \n" +
-                    "(5) Closing time");
+                Console.WriteLine(OptionMenu);
                 string EditNumber = Console.ReadLine();
 
                 if (EditNumber == "1")
@@ -896,11 +875,6 @@ namespace EscapeRoomApp
                             Global.EscPlayers2min = NewNumber;
                         }
                     }
-                    if (EditNumber == "4" || EditNumber == "5")
-                    {
-                        Console.WriteLine("Enter the new time:");
-                        var readline2 = Console.ReadLine();
-                    }
                     else
                     {
                         Colorful.Console.WriteLine("Input is not a valid number", Color.Red);
@@ -912,12 +886,7 @@ namespace EscapeRoomApp
             {
                 Console.Clear();
                 Colorful.Console.WriteLine("What would you like to edit? \n", Color.White);
-                Console.WriteLine(
-                    "(1) Escape Room Name \n" +
-                    "(2) Maximum players allowed \n" +
-                    "(3) Minimum players allowed \n" +
-                    "(4) Opening time\n" +
-                    "(5) Closing time");
+                Console.WriteLine(OptionMenu);
                 string EditNumber = Console.ReadLine();
 
                 if (EditNumber == "1")
@@ -942,11 +911,6 @@ namespace EscapeRoomApp
                             Global.EscPlayers3min = NewNumber;
                         }
                     }
-                    if (EditNumber == "4" || EditNumber == "5")
-                    {
-                        Console.WriteLine("Enter the new time:");
-                        var readline3 = Console.ReadLine();
-                    }
                     else
                     {
                         Colorful.Console.WriteLine("Input is not a valid number", Color.Red);
@@ -958,12 +922,7 @@ namespace EscapeRoomApp
             {
                 Console.Clear();
                 Colorful.Console.WriteLine("What would you like to edit? \n", Color.White);
-                Console.WriteLine(
-                    "(1) Escape Room Name \n" +
-                    "(2) Maximum players allowed \n" +
-                    "(3) Minimum players allowed \n" +
-                    "(4) Opening time \n" +
-                    "(5) Closing time");
+                Console.WriteLine(OptionMenu);
                 string EditNumber = Console.ReadLine();
 
                 if (EditNumber == "1")
@@ -992,11 +951,6 @@ namespace EscapeRoomApp
                             ChangePassword();
                         }
                     }
-                    if (EditNumber == "4" || EditNumber == "5")
-                    {
-                        Console.WriteLine("Enter the new time:");
-                        var readline4 = Console.ReadLine();
-                    }
                     else
                     {
                         Colorful.Console.WriteLine("Input is not a valid number", Color.Red);
@@ -1008,12 +962,7 @@ namespace EscapeRoomApp
             {
                 Console.Clear();
                 Colorful.Console.WriteLine("What would you like to edit? \n", Color.White);
-                Console.WriteLine(
-                    "(1) Escape Room Name \n" +
-                    "(2) Maximum players allowed \n" +
-                    "(3) Minimum players allowed \n" +
-                    "(4) Opening time \n" +
-                    "(5) Closing time");
+                Console.WriteLine(OptionMenu);
                 string EditNumber = Console.ReadLine();
 
                 if (EditNumber == "1")
@@ -1037,11 +986,6 @@ namespace EscapeRoomApp
                         {
                             Global.EscPlayers5min = NewNumber;
                         }
-                    }
-                    if (EditNumber == "4" || EditNumber == "5")
-                    {
-                        Console.WriteLine("Enter the new time:");
-                        var readline5 = Console.ReadLine();
                     }
                     else
                     {
