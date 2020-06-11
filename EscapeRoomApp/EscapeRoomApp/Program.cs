@@ -337,7 +337,7 @@ namespace EscapeRoomApp
             while (Reserved == true)
             {
                 Console.Clear();
-                Console.WriteLine($"The time slot you wanted to reserve ({Input_TimeSlot}) is already occupied");
+                Colorful.Console.WriteLine($"The time slot you wanted to reserve ({Input_TimeSlot}) is already occupied", Color.Red);
                 Input_TimeSlot = TimeSlotSelect(Global.ReservationEscapeRoomNumber);
                 Reserved = CheckIfAvailable(Input_ReservationEscapeRoomName, Input_ReservationDate, Input_TimeSlot);
             }
@@ -850,6 +850,7 @@ namespace EscapeRoomApp
             {
                 Console.Clear();
                 Colorful.Console.WriteLine("What would you like to edit? \n", Color.White);
+
                 Console.WriteLine(OptionMenu);
                 string EditNumber = Console.ReadLine();
 
@@ -922,6 +923,7 @@ namespace EscapeRoomApp
             {
                 Console.Clear();
                 Colorful.Console.WriteLine("What would you like to edit? \n", Color.White);
+
                 Console.WriteLine(OptionMenu);
                 string EditNumber = Console.ReadLine();
 
@@ -962,6 +964,7 @@ namespace EscapeRoomApp
             {
                 Console.Clear();
                 Colorful.Console.WriteLine("What would you like to edit? \n", Color.White);
+
                 Console.WriteLine(OptionMenu);
                 string EditNumber = Console.ReadLine();
 

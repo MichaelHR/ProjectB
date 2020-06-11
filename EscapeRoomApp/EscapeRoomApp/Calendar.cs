@@ -1,32 +1,34 @@
-﻿using System;
+﻿// DIT IS DE FUNCTIE DIE EEN KALENDER MAAKTE DIE OP HET EINDE IS KOMEN TE VERVALLEN.
+// De kans is aanwezig dat het nu niet meer goed werkt omdat het normaal in de rest van de applicatie stond
+using System;
 using System.Globalization;
+using System.Drawing;
+
 
 namespace Calendar
 {
     class Program
     {
-        static int year = new int();
-        static int month = new int();
         static int[,] calendar = new int[6, 7];
         private static DateTime date;
 
-        private static void Main(string[] args)
+        static void Main(string[] arg)
         {
-            date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);//gives you a datetime object for the first day of the month
+
+            date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1); //geeft een datetime object voor de 1e dag van de maand
             DrawHeader();
             FillCalendar();
             MakeCalendar();
-            Console.ReadLine();
         }
 
+        // onderstaande functie zorgt dat de dagen en maand boven de kalender staat
         static void DrawHeader()
         {
-            Console.Write("\n\n");
-            //gives you the month and year at the top of the calendar
             Console.WriteLine(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month) + " " + DateTime.Now.Year);
             Console.WriteLine("Ma Di Wo Do Vr Za Zo");
         }
 
+        // onderstaande functie vult de kalender in
         static void FillCalendar()
         {
             int days = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
@@ -59,11 +61,11 @@ namespace Calendar
                     {
                         if (calendar[i, j] < 10)
                         {
-                            Console.Write(" " + calendar[i, j] + " ");
+                            Console.Write(" " + calendar[i, j] + " ", Color.LawnGreen);
                         }
                         else
                         {
-                            Console.Write(calendar[i, j] + " ");
+                            Console.Write(calendar[i, j] + " ", Color.LawnGreen);
                         }
                     }
                     else
