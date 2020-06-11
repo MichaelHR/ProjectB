@@ -1,4 +1,4 @@
-// DIT IS DE FUNCTIE DIE EEN KALENDER MAAKTE DIE OP HET EINDE IS KOMEN TE VERVALLEN.
+﻿// DIT IS DE FUNCTIE DIE EEN KALENDER MAAKTE DIE OP HET EINDE IS KOMEN TE VERVALLEN.
 // De kans is aanwezig dat het nu niet meer goed werkt omdat het normaal in de rest van de applicatie stond
 using System;
 using System.Globalization;
@@ -61,11 +61,11 @@ namespace Calendar
                     {
                         if (calendar[i, j] < 10)
                         {
-                            Console.Write(" " + calendar[i, j] + " ");
+                            Console.Write(" " + calendar[i, j] + " ", Color.LawnGreen);
                         }
                         else
                         {
-                            Console.Write(calendar[i, j] + " ");
+                            Console.Write(calendar[i, j] + " ", Color.LawnGreen);
                         }
                     }
                     else
