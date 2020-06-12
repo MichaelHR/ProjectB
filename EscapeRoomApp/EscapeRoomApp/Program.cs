@@ -379,7 +379,7 @@ namespace EscapeRoomApp
         public static DateTime DateParse()
         {
             Colorful.Console.WriteLine("\nPlease enter the date for your reservation:", Color.White);
-            Colorful.Console.WriteLine("Dates are entered as \"day-month-year\nFor example: 01/02/2021 is the first of february, 2021", Color.Yellow);
+            Colorful.Console.WriteLine("Dates are entered as \"day-month-year\"\nFor example: 01/02/2021 is the first of february, 2021", Color.Yellow);
             DateTime Input_ReservationDate;
             if (DateTime.TryParse(Console.ReadLine(), out Input_ReservationDate))
             {
@@ -964,7 +964,6 @@ namespace EscapeRoomApp
             {
                 Console.Clear();
                 Colorful.Console.WriteLine("What would you like to edit? \n", Color.White);
-
                 Console.WriteLine(OptionMenu);
                 string EditNumber = Console.ReadLine();
 
