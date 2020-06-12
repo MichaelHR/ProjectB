@@ -25,7 +25,7 @@ namespace EscapeRoomApp
         }
         public override string ToString()
         {
-            return ReservationName + " made a reservation for " + ReservationPlayerAmount + " players for " + ReservationEscapeRoomName + " for date of " + ReservationDate + " at " + ReservationTime;
+            return ReservationName + " made a reservation for " + ReservationPlayerAmount + " players for " + ReservationEscapeRoomName + " for date of " + ReservationDate.ToShortDateString() + " at " + ReservationTime;
         }
     }
 }
